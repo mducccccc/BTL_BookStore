@@ -48,7 +48,7 @@ namespace BTL.GUI
         private void InitializeComponent()
         {
             this.Dock = DockStyle.Fill;
-            this.BackColor = Color.FromArgb(241, 245, 249);
+            this.BackColor = UITheme.Page;
             this.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
 
             tabSearch = new TabControl
@@ -82,7 +82,7 @@ namespace BTL.GUI
             {
                 Text = "BỘ LỌC ĐA TIÊU CHÍ SÁCH TRUYỆN (Tên sách, Lĩnh vực, Tác giả, Nhà xuất bản)",
                 Font = new Font("Segoe UI", 10F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(37, 99, 235),
+                ForeColor = UITheme.Navy,
                 Dock = DockStyle.Top,
                 Height = 25
             };
@@ -112,7 +112,7 @@ namespace BTL.GUI
                 Location = new Point(650, 45),
                 Size = new Size(100, 32),
                 FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(37, 99, 235),
+                BackColor = UITheme.Blue,
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 Cursor = Cursors.Hand
@@ -126,12 +126,13 @@ namespace BTL.GUI
                 Location = new Point(650, 82),
                 Size = new Size(100, 28),
                 FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(226, 232, 240),
-                ForeColor = Color.FromArgb(51, 65, 85),
+                BackColor = Color.White,
+                ForeColor = UITheme.Navy,
                 Font = new Font("Segoe UI", 8.5F),
                 Cursor = Cursors.Hand
             };
-            btnDatLaiSach.FlatAppearance.BorderSize = 0;
+            btnDatLaiSach.FlatAppearance.BorderColor = UITheme.Border;
+            btnDatLaiSach.FlatAppearance.BorderSize = 1;
             btnDatLaiSach.Click += (s, e) =>
             {
                 txtTimTenSach.Clear();
@@ -182,21 +183,15 @@ namespace BTL.GUI
             {
                 Dock = DockStyle.Fill,
                 BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
+                BorderStyle = BorderStyle.FixedSingle,
                 RowHeadersVisible = false,
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                EnableHeadersVisualStyles = false,
-                Font = new Font("Segoe UI", 9F)
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
-            dgvKetQuaSach.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249);
-            dgvKetQuaSach.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
-            dgvKetQuaSach.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dgvKetQuaSach.ColumnHeadersHeight = 34;
-            dgvKetQuaSach.RowTemplate.Height = 28;
+            UITheme.StyleDataGridView(dgvKetQuaSach);
             dgvKetQuaSach.CellClick += DgvKetQuaSach_CellClick;
 
             pnlGridContainer.Controls.Add(dgvKetQuaSach);
@@ -307,7 +302,7 @@ namespace BTL.GUI
             {
                 Text = "BỘ LỌC ĐA TIÊU CHÍ NHÂN VIÊN (Tên nhân viên, Ca làm việc, Giới tính)",
                 Font = new Font("Segoe UI", 10F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(37, 99, 235),
+                ForeColor = UITheme.Navy,
                 Dock = DockStyle.Top,
                 Height = 25
             };
@@ -332,7 +327,7 @@ namespace BTL.GUI
                 Location = new Point(850, 43),
                 Size = new Size(95, 32),
                 FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(37, 99, 235),
+                BackColor = UITheme.Blue,
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 Cursor = Cursors.Hand
@@ -346,12 +341,13 @@ namespace BTL.GUI
                 Location = new Point(955, 43),
                 Size = new Size(80, 32),
                 FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(226, 232, 240),
-                ForeColor = Color.FromArgb(51, 65, 85),
+                BackColor = Color.White,
+                ForeColor = UITheme.Navy,
                 Font = new Font("Segoe UI", 8.5F),
                 Cursor = Cursors.Hand
             };
-            btnDatLaiNV.FlatAppearance.BorderSize = 0;
+            btnDatLaiNV.FlatAppearance.BorderColor = UITheme.Border;
+            btnDatLaiNV.FlatAppearance.BorderSize = 1;
             btnDatLaiNV.Click += (s, e) =>
             {
                 txtTimTenNV.Clear();
@@ -381,21 +377,15 @@ namespace BTL.GUI
             {
                 Dock = DockStyle.Fill,
                 BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
+                BorderStyle = BorderStyle.FixedSingle,
                 RowHeadersVisible = false,
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                EnableHeadersVisualStyles = false,
-                Font = new Font("Segoe UI", 9F)
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
-            dgvKetQuaNV.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249);
-            dgvKetQuaNV.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
-            dgvKetQuaNV.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dgvKetQuaNV.ColumnHeadersHeight = 34;
-            dgvKetQuaNV.RowTemplate.Height = 28;
+            UITheme.StyleDataGridView(dgvKetQuaNV);
 
             pnlGridContainer.Controls.Add(dgvKetQuaNV);
 

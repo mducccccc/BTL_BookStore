@@ -36,7 +36,7 @@ namespace BTL.GUI
         private void InitializeComponent()
         {
             this.Dock = DockStyle.Fill;
-            this.BackColor = Color.FromArgb(241, 245, 249);
+            this.BackColor = UITheme.Page;
             this.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
 
             // 1. Top Panel
@@ -50,9 +50,9 @@ namespace BTL.GUI
 
             var lblTitle = new Label
             {
-                Text = " DANH MỤC NHÂN VIÊN",
+                Text = "QUẢN LÝ NHÂN VIÊN",
                 Font = new Font("Segoe UI", 13F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(30, 41, 59),
+                ForeColor = UITheme.Navy,
                 AutoSize = true,
                 Location = new Point(18, 16)
             };
@@ -117,11 +117,11 @@ namespace BTL.GUI
             var lblDiaChi = new Label { Text = "Địa chỉ:", Location = new Point(310, 100), AutoSize = true, ForeColor = Color.FromArgb(71, 85, 105) };
             txtDiaChi = new TextBox { Location = new Point(380, 96), Width = 430 };
 
-            // Line 4: Buttons
-            btnThem = CreateButton(" Thêm mới", Color.FromArgb(16, 185, 129), 25, 150);
-            btnSua = CreateButton(" Cập nhật", Color.FromArgb(37, 99, 235), 145, 150);
-            btnXoa = CreateButton(" Xóa", Color.FromArgb(239, 68, 68), 265, 150);
-            btnLamMoi = CreateButton(" Làm mới", Color.FromArgb(100, 116, 139), 385, 150);
+            // Line 4: Buttons (Chuẩn hóa màu UTC)
+            btnThem = CreateButton("+ Thêm mới", UITheme.Blue, 25, 150);
+            btnSua = CreateButton("Cập nhật", UITheme.Navy, 145, 150);
+            btnXoa = CreateButton("Xóa", Color.FromArgb(220, 38, 38), 265, 150);
+            btnLamMoi = CreateButton("Làm mới", UITheme.Muted, 385, 150);
 
             var lblTim = new Label { Text = " Tìm kiếm:", Location = new Point(540, 154), AutoSize = true, ForeColor = Color.FromArgb(71, 85, 105) };
             txtTimKiem = new TextBox { Location = new Point(625, 150), Width = 185 };
@@ -147,20 +147,15 @@ namespace BTL.GUI
             {
                 Dock = DockStyle.Fill,
                 BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
+                BorderStyle = BorderStyle.FixedSingle,
                 RowHeadersVisible = false,
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                EnableHeadersVisualStyles = false
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
-            dgvNhanVien.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249);
-            dgvNhanVien.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
-            dgvNhanVien.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            dgvNhanVien.ColumnHeadersHeight = 36;
-            dgvNhanVien.RowTemplate.Height = 32;
+            UITheme.StyleDataGridView(dgvNhanVien);
 
             dgvNhanVien.CellClick += DgvNhanVien_CellClick;
 

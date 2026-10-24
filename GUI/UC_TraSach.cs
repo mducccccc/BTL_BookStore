@@ -64,7 +64,7 @@ namespace BTL.GUI
         private void InitializeComponent()
         {
             this.Dock = DockStyle.Fill;
-            this.BackColor = Color.FromArgb(241, 245, 249);
+            this.BackColor = UITheme.Page;
             this.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
 
             // 1. Top Title Panel
@@ -80,7 +80,7 @@ namespace BTL.GUI
             {
                 Text = "NHẬN TRẢ SÁCH & TÍNH TIỀN",
                 Font = new Font("Segoe UI", 13F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(30, 41, 59),
+                ForeColor = UITheme.Navy,
                 AutoSize = true,
                 Location = new Point(18, 16)
             };
@@ -89,7 +89,7 @@ namespace BTL.GUI
             {
                 Text = "Yêu cầu 3: Lọc sách chưa trả  |  Yêu cầu 4: Tính tiền thuê + Phạt  |  Yêu cầu 2: Hoàn kho tự động",
                 Font = new Font("Segoe UI", 9F, FontStyle.Italic),
-                ForeColor = Color.FromArgb(37, 99, 235),
+                ForeColor = UITheme.Blue,
                 AutoSize = true,
                 Location = new Point(290, 20)
             };
@@ -237,21 +237,15 @@ namespace BTL.GUI
             {
                 Dock = DockStyle.Fill,
                 BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
+                BorderStyle = BorderStyle.FixedSingle,
                 RowHeadersVisible = false,
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                EnableHeadersVisualStyles = false,
-                Font = new Font("Segoe UI", 9F)
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
-            dgvGioTra.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249);
-            dgvGioTra.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
-            dgvGioTra.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dgvGioTra.ColumnHeadersHeight = 32;
-            dgvGioTra.RowTemplate.Height = 28;
+            UITheme.StyleDataGridView(dgvGioTra);
 
             InitGioTraGrid();
 
@@ -273,7 +267,7 @@ namespace BTL.GUI
                 Location = new Point(10, 35),
                 AutoSize = true,
                 Font = new Font("Segoe UI", 10.5F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(37, 99, 235)
+                ForeColor = UITheme.Navy
             };
 
             btnXacNhanTra = new Button
@@ -282,7 +276,7 @@ namespace BTL.GUI
                 Location = new Point(310, 15),
                 Size = new Size(170, 40),
                 FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(37, 99, 235),
+                BackColor = UITheme.Blue,
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                 Cursor = Cursors.Hand
@@ -296,12 +290,13 @@ namespace BTL.GUI
                 Location = new Point(490, 15),
                 Size = new Size(115, 40),
                 FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(100, 116, 139),
-                ForeColor = Color.White,
-                Font = new Font("Segoe UI", 9F, FontStyle.Bold),
+                BackColor = Color.White,
+                ForeColor = UITheme.Navy,
+                Font = new Font("Segoe UI", 9F, FontStyle.Regular),
                 Cursor = Cursors.Hand
             };
-            btnLamMoi.FlatAppearance.BorderSize = 0;
+            btnLamMoi.FlatAppearance.BorderColor = UITheme.Border;
+            btnLamMoi.FlatAppearance.BorderSize = 1;
             btnLamMoi.Click += (s, e) => ResetForm();
 
             pnlLapActions.Controls.AddRange(new Control[] { lblTongThanhTien, lblThanhToanCuoi, btnXacNhanTra, btnLamMoi });
@@ -330,7 +325,7 @@ namespace BTL.GUI
                 Dock = DockStyle.Top,
                 Height = 30,
                 Font = new Font("Segoe UI", 10.5F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(30, 41, 59)
+                ForeColor = UITheme.Navy
             };
 
             var pnlTimHist = new Panel { Dock = DockStyle.Top, Height = 40 };
@@ -347,21 +342,15 @@ namespace BTL.GUI
                 Dock = DockStyle.Top,
                 Height = 250,
                 BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
+                BorderStyle = BorderStyle.FixedSingle,
                 RowHeadersVisible = false,
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                EnableHeadersVisualStyles = false,
-                Font = new Font("Segoe UI", 9F)
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
-            dgvLichSuTra.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249);
-            dgvLichSuTra.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
-            dgvLichSuTra.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dgvLichSuTra.ColumnHeadersHeight = 32;
-            dgvLichSuTra.RowTemplate.Height = 28;
+            UITheme.StyleDataGridView(dgvLichSuTra);
             dgvLichSuTra.CellClick += DgvLichSuTra_CellClick;
 
             var lblCTTitle = new Label
@@ -370,7 +359,7 @@ namespace BTL.GUI
                 Dock = DockStyle.Top,
                 Height = 30,
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(71, 85, 105),
+                ForeColor = UITheme.Navy,
                 Padding = new Padding(0, 8, 0, 0)
             };
 
@@ -378,16 +367,15 @@ namespace BTL.GUI
             {
                 Dock = DockStyle.Fill,
                 BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
+                BorderStyle = BorderStyle.FixedSingle,
                 RowHeadersVisible = false,
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                EnableHeadersVisualStyles = false,
-                Font = new Font("Segoe UI", 8.5F)
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
+            UITheme.StyleDataGridView(dgvChiTietTra);
             dgvChiTietTra.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249);
             dgvChiTietTra.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
             dgvChiTietTra.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);

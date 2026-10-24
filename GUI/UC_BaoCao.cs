@@ -51,7 +51,7 @@ namespace BTL.GUI
         private void InitializeComponent()
         {
             this.Dock = DockStyle.Fill;
-            this.BackColor = Color.FromArgb(241, 245, 249);
+            this.BackColor = UITheme.Page;
             this.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
 
             tabBaoCao = new TabControl
@@ -86,7 +86,7 @@ namespace BTL.GUI
             {
                 Text = "BÁO CÁO DANH SÁCH SÁCH TRUYỆN ĐANG ĐƯỢC THUÊ CHƯA TRẢ",
                 Font = new Font("Segoe UI", 10.5F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(30, 41, 59),
+                ForeColor = UITheme.Navy,
                 Dock = DockStyle.Top,
                 Height = 25
             };
@@ -97,7 +97,7 @@ namespace BTL.GUI
                 Location = new Point(20, 45),
                 Size = new Size(130, 34),
                 FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(37, 99, 235),
+                BackColor = UITheme.Blue,
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 Cursor = Cursors.Hand
@@ -140,21 +140,15 @@ namespace BTL.GUI
             {
                 Dock = DockStyle.Fill,
                 BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
+                BorderStyle = BorderStyle.FixedSingle,
                 RowHeadersVisible = false,
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                EnableHeadersVisualStyles = false,
-                Font = new Font("Segoe UI", 9F)
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
-            dgvSachChuaTra.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249);
-            dgvSachChuaTra.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
-            dgvSachChuaTra.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dgvSachChuaTra.ColumnHeadersHeight = 34;
-            dgvSachChuaTra.RowTemplate.Height = 28;
+            UITheme.StyleDataGridView(dgvSachChuaTra);
 
             pnlGrid.Controls.Add(dgvSachChuaTra);
 
@@ -240,7 +234,7 @@ namespace BTL.GUI
                 Location = new Point(410, 21),
                 Size = new Size(110, 32),
                 FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(37, 99, 235),
+                BackColor = UITheme.Blue,
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 Cursor = Cursors.Hand
@@ -268,21 +262,15 @@ namespace BTL.GUI
             {
                 Dock = DockStyle.Fill,
                 BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
+                BorderStyle = BorderStyle.FixedSingle,
                 RowHeadersVisible = false,
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                EnableHeadersVisualStyles = false,
-                Font = new Font("Segoe UI", 9F)
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
-            dgvDoanhThu.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249);
-            dgvDoanhThu.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
-            dgvDoanhThu.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dgvDoanhThu.ColumnHeadersHeight = 34;
-            dgvDoanhThu.RowTemplate.Height = 28;
+            UITheme.StyleDataGridView(dgvDoanhThu);
 
             pnlLeftGrid.Controls.Add(dgvDoanhThu);
 
@@ -405,11 +393,11 @@ namespace BTL.GUI
                 int barX = startX + i * (colWidth + gap);
                 int barY = bottomY - barHeight;
 
-                // Vẽ cột với màu gradient
+                // Vẽ cột với màu gradient UTC (Blue -> Navy)
                 var barRect = new Rectangle(barX, barY, colWidth, barHeight);
                 if (barHeight > 0)
                 {
-                    using var brushBar = new LinearGradientBrush(barRect, Color.FromArgb(59, 130, 246), Color.FromArgb(37, 99, 235), LinearGradientMode.Vertical);
+                    using var brushBar = new LinearGradientBrush(barRect, UITheme.Blue, UITheme.Navy, LinearGradientMode.Vertical);
                     g.FillRectangle(brushBar, barRect);
                 }
 
@@ -444,7 +432,7 @@ namespace BTL.GUI
             {
                 Text = "DANH SÁCH 5 SÁCH TRUYỆN ĐẠT DOANH THU NHIỀU NHẤT CỦA CỬA HÀNG",
                 Font = new Font("Segoe UI", 10.5F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(30, 41, 59),
+                ForeColor = UITheme.Navy,
                 Dock = DockStyle.Top,
                 Height = 25
             };
@@ -469,7 +457,7 @@ namespace BTL.GUI
                 Location = new Point(590, 40),
                 Size = new Size(110, 32),
                 FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(37, 99, 235),
+                BackColor = UITheme.Blue,
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 Cursor = Cursors.Hand
@@ -494,21 +482,15 @@ namespace BTL.GUI
             {
                 Dock = DockStyle.Fill,
                 BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
+                BorderStyle = BorderStyle.FixedSingle,
                 RowHeadersVisible = false,
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                EnableHeadersVisualStyles = false,
-                Font = new Font("Segoe UI", 9.5F)
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
-            dgvTop5.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249);
-            dgvTop5.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
-            dgvTop5.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            dgvTop5.ColumnHeadersHeight = 36;
-            dgvTop5.RowTemplate.Height = 34;
+            UITheme.StyleDataGridView(dgvTop5);
 
             dgvTop5.CellFormatting += DgvTop5_CellFormatting;
 

@@ -52,7 +52,7 @@ namespace BTL.GUI
         private void InitializeComponent()
         {
             this.Dock = DockStyle.Fill;
-            this.BackColor = Color.FromArgb(241, 245, 249);
+            this.BackColor = UITheme.Page;
             this.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
 
             // 1. Top Title Panel
@@ -68,7 +68,7 @@ namespace BTL.GUI
             {
                 Text = "QUẢN LÝ SÁCH TRUYỆN",
                 Font = new Font("Segoe UI", 13F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(30, 41, 59),
+                ForeColor = UITheme.Navy,
                 AutoSize = true,
                 Location = new Point(18, 16)
             };
@@ -192,11 +192,11 @@ namespace BTL.GUI
             };
             btnXoaAnh.Click += (s, e) => { txtAnh.Clear(); picAnh.Image = null; };
 
-            // ===== HÀNG DƯỚI: NÚT THAO TÁC & TÌM KIẾM =====
-            btnThem = CreateButton("Thêm mới", Color.FromArgb(16, 185, 129), 20, 225);
-            btnSua = CreateButton("Cập nhật", Color.FromArgb(37, 99, 235), 140, 225);
-            btnXoa = CreateButton("Xóa", Color.FromArgb(239, 68, 68), 260, 225);
-            btnLamMoi = CreateButton("Làm mới", Color.FromArgb(100, 116, 139), 380, 225);
+            // ===== HÀNG DƯỚI: NÚT THAO TÁC & TÌM KIẾM (CHUẨN HÓA UI UTC) =====
+            btnThem = CreateButton("+ Thêm mới", UITheme.Blue, 20, 225);
+            btnSua = CreateButton("Cập nhật", UITheme.Navy, 140, 225);
+            btnXoa = CreateButton("Xóa sách", Color.FromArgb(220, 38, 38), 260, 225);
+            btnLamMoi = CreateButton("Làm mới", UITheme.Muted, 380, 225);
 
             var lblTim = new Label { Text = "Tìm nhanh:", Location = new Point(530, 230), AutoSize = true, ForeColor = Color.FromArgb(71, 85, 105) };
             txtTimKiem = new TextBox { Location = new Point(610, 226), Width = 220, PlaceholderText = "Nhập tên sách, tác giả..." };
@@ -223,20 +223,15 @@ namespace BTL.GUI
             {
                 Dock = DockStyle.Fill,
                 BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
+                BorderStyle = BorderStyle.FixedSingle,
                 RowHeadersVisible = false,
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                EnableHeadersVisualStyles = false
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
-            dgvSach.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249);
-            dgvSach.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
-            dgvSach.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            dgvSach.ColumnHeadersHeight = 36;
-            dgvSach.RowTemplate.Height = 32;
+            UITheme.StyleDataGridView(dgvSach);
 
             dgvSach.CellClick += DgvSach_CellClick;
             dgvSach.CellFormatting += DgvSach_CellFormatting;

@@ -51,7 +51,7 @@ namespace BTL.GUI
         private void InitializeComponent()
         {
             this.Dock = DockStyle.Fill;
-            this.BackColor = Color.FromArgb(241, 245, 249);
+            this.BackColor = UITheme.Page;
             this.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
 
             tabDanhMuc = new TabControl
@@ -85,10 +85,10 @@ namespace BTL.GUI
             var lblTien = new Label { Text = "Tiền phạt:", Location = new Point(20, 60), AutoSize = true };
             numTienPhat = new NumericUpDown { Location = new Point(120, 56), Width = 150, Maximum = 10000000, Increment = 5000, ThousandsSeparator = true };
 
-            var btnThem = CreateSmallBtn("➕ Thêm", Color.FromArgb(16, 185, 129), 300, 54);
-            var btnSua = CreateSmallBtn("✏️ Sửa", Color.FromArgb(37, 99, 235), 390, 54);
-            var btnXoa = CreateSmallBtn("🗑️ Xóa", Color.FromArgb(239, 68, 68), 480, 54);
-            var btnMoi = CreateSmallBtn("🔄 Mới", Color.FromArgb(100, 116, 139), 570, 54);
+            var btnThem = CreateSmallBtn("➕ Thêm", UITheme.Blue, 300, 54);
+            var btnSua = CreateSmallBtn("✏️ Sửa", UITheme.Navy, 390, 54);
+            var btnXoa = CreateSmallBtn("🗑️ Xóa", Color.FromArgb(220, 38, 38), 480, 54);
+            var btnMoi = CreateSmallBtn("🔄 Mới", UITheme.Muted, 570, 54);
 
             pnlTop.Controls.AddRange(new Control[] { lblMa, txtMaVP, lblTen, txtTenVP, lblTien, numTienPhat, btnThem, btnSua, btnXoa, btnMoi });
 
@@ -356,20 +356,15 @@ namespace BTL.GUI
             {
                 Dock = DockStyle.Fill,
                 BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
+                BorderStyle = BorderStyle.FixedSingle,
                 RowHeadersVisible = false,
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                EnableHeadersVisualStyles = false
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            dgv.ColumnHeadersHeight = 36;
-            dgv.RowTemplate.Height = 30;
+            UITheme.StyleDataGridView(dgv);
             return dgv;
         }
 

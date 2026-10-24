@@ -18,6 +18,9 @@ namespace BTL.GUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.pnlTopStrip = new System.Windows.Forms.Panel();
+            this.lblTopStripLeft = new System.Windows.Forms.Label();
+            this.lblTopStripRight = new System.Windows.Forms.Label();
             this.pnlSidebar = new System.Windows.Forms.Panel();
             this.pnlNavButtons = new System.Windows.Forms.Panel();
             this.btnNavBaoCao = new System.Windows.Forms.Button();
@@ -42,6 +45,7 @@ namespace BTL.GUI
             this.pnlContainer = new System.Windows.Forms.Panel();
             this.timerClock = new System.Windows.Forms.Timer(this.components);
 
+            this.pnlTopStrip.SuspendLayout();
             this.pnlSidebar.SuspendLayout();
             this.pnlNavButtons.SuspendLayout();
             this.pnlUserFooter.SuspendLayout();
@@ -49,46 +53,77 @@ namespace BTL.GUI
             this.pnlTopBar.SuspendLayout();
             this.SuspendLayout();
 
+            // pnlTopStrip
+            this.pnlTopStrip.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
+            this.pnlTopStrip.Controls.Add(this.lblTopStripRight);
+            this.pnlTopStrip.Controls.Add(this.lblTopStripLeft);
+            this.pnlTopStrip.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTopStrip.Location = new System.Drawing.Point(0, 0);
+            this.pnlTopStrip.Name = "pnlTopStrip";
+            this.pnlTopStrip.Size = new System.Drawing.Size(1244, 28);
+            this.pnlTopStrip.TabIndex = 3;
+
+            // lblTopStripLeft
+            this.lblTopStripLeft.AutoSize = true;
+            this.lblTopStripLeft.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.lblTopStripLeft.ForeColor = System.Drawing.Color.White;
+            this.lblTopStripLeft.Location = new System.Drawing.Point(16, 6);
+            this.lblTopStripLeft.Name = "lblTopStripLeft";
+            this.lblTopStripLeft.Size = new System.Drawing.Size(425, 15);
+            this.lblTopStripLeft.TabIndex = 0;
+            this.lblTopStripLeft.Text = "TRƯỜNG ĐẠI HỌC GIAO THÔNG VẬN TẢI · KHOA CÔNG NGHỆ THÔNG TIN";
+
+            // lblTopStripRight
+            this.lblTopStripRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTopStripRight.AutoSize = true;
+            this.lblTopStripRight.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.lblTopStripRight.ForeColor = System.Drawing.Color.FromArgb(220, 231, 241);
+            this.lblTopStripRight.Location = new System.Drawing.Point(980, 6);
+            this.lblTopStripRight.Name = "lblTopStripRight";
+            this.lblTopStripRight.Size = new System.Drawing.Size(250, 15);
+            this.lblTopStripRight.TabIndex = 1;
+            this.lblTopStripRight.Text = "Hỗ trợ bạn đọc · BTL Lập trình trực quan";
+
             // pnlSidebar
-            this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
             this.pnlSidebar.Controls.Add(this.pnlNavButtons);
             this.pnlSidebar.Controls.Add(this.pnlUserFooter);
             this.pnlSidebar.Controls.Add(this.pnlLogo);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
+            this.pnlSidebar.Location = new System.Drawing.Point(0, 28);
             this.pnlSidebar.Name = "pnlSidebar";
-            this.pnlSidebar.Size = new System.Drawing.Size(235, 720);
+            this.pnlSidebar.Size = new System.Drawing.Size(235, 692);
             this.pnlSidebar.TabIndex = 0;
 
             // pnlLogo
-            this.pnlLogo.BackColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            this.pnlLogo.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
             this.pnlLogo.Controls.Add(this.lblSubLogo);
             this.pnlLogo.Controls.Add(this.lblLogo);
             this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLogo.Location = new System.Drawing.Point(0, 0);
             this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(235, 80);
+            this.pnlLogo.Size = new System.Drawing.Size(235, 78);
             this.pnlLogo.TabIndex = 0;
 
             // lblLogo
             this.lblLogo.AutoSize = true;
-            this.lblLogo.Font = new System.Drawing.Font("Segoe UI", 13.5F, System.Drawing.FontStyle.Bold);
-            this.lblLogo.ForeColor = System.Drawing.Color.White;
-            this.lblLogo.Location = new System.Drawing.Point(18, 16);
+            this.lblLogo.Font = new System.Drawing.Font("Segoe UI", 12.5F, System.Drawing.FontStyle.Bold);
+            this.lblLogo.ForeColor = System.Drawing.Color.FromArgb(245, 213, 42);
+            this.lblLogo.Location = new System.Drawing.Point(14, 16);
             this.lblLogo.Name = "lblLogo";
-            this.lblLogo.Size = new System.Drawing.Size(166, 25);
+            this.lblLogo.Size = new System.Drawing.Size(185, 23);
             this.lblLogo.TabIndex = 0;
-            this.lblLogo.Text = "📖 BOOKSTORE";
+            this.lblLogo.Text = "◉ UTC BOOKSTORE";
 
             // lblSubLogo
             this.lblSubLogo.AutoSize = true;
-            this.lblSubLogo.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.lblSubLogo.ForeColor = System.Drawing.Color.FromArgb(148, 163, 184);
-            this.lblSubLogo.Location = new System.Drawing.Point(46, 43);
+            this.lblSubLogo.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.lblSubLogo.ForeColor = System.Drawing.Color.FromArgb(220, 231, 241);
+            this.lblSubLogo.Location = new System.Drawing.Point(16, 43);
             this.lblSubLogo.Name = "lblSubLogo";
-            this.lblSubLogo.Size = new System.Drawing.Size(135, 15);
+            this.lblSubLogo.Size = new System.Drawing.Size(170, 13);
             this.lblSubLogo.TabIndex = 1;
-            this.lblSubLogo.Text = "Quản lý thuê sách truyện";
+            this.lblSubLogo.Text = "HỆ THỐNG THUÊ SÁCH TRUYỆN";
 
             // pnlNavButtons
             this.pnlNavButtons.AutoScroll = true;
@@ -111,12 +146,12 @@ namespace BTL.GUI
             void StyleNavBtn(System.Windows.Forms.Button btn, string text, int top)
             {
                 btn.Dock = System.Windows.Forms.DockStyle.Top;
-                btn.Height = 48;
+                btn.Height = 46;
                 btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 btn.FlatAppearance.BorderSize = 0;
-                btn.BackColor = System.Drawing.Color.FromArgb(15, 23, 42);
-                btn.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
-                btn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular);
+                btn.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
+                btn.ForeColor = System.Drawing.Color.FromArgb(245, 248, 252);
+                btn.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular);
                 btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                 btn.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
                 btn.Text = text;
@@ -145,11 +180,11 @@ namespace BTL.GUI
             this.pnlNavButtons.Controls.SetChildIndex(this.btnNavBaoCao, 8);
 
             // pnlUserFooter
-            this.pnlUserFooter.BackColor = System.Drawing.Color.FromArgb(30, 41, 59);
+            this.pnlUserFooter.BackColor = System.Drawing.Color.FromArgb(22, 53, 98);
             this.pnlUserFooter.Controls.Add(this.btnDangXuat);
             this.pnlUserFooter.Controls.Add(this.lblCurrentUser);
             this.pnlUserFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlUserFooter.Location = new System.Drawing.Point(0, 650);
+            this.pnlUserFooter.Location = new System.Drawing.Point(0, 622);
             this.pnlUserFooter.Name = "pnlUserFooter";
             this.pnlUserFooter.Size = new System.Drawing.Size(235, 70);
             this.pnlUserFooter.TabIndex = 2;
@@ -165,14 +200,14 @@ namespace BTL.GUI
             this.lblCurrentUser.Text = "👤 NV: Nguyễn Văn Quản Lý";
 
             // btnDangXuat
-            this.btnDangXuat.BackColor = System.Drawing.Color.FromArgb(51, 65, 85);
+            this.btnDangXuat.BackColor = System.Drawing.Color.FromArgb(8, 127, 181);
             this.btnDangXuat.FlatAppearance.BorderSize = 0;
             this.btnDangXuat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDangXuat.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.btnDangXuat.ForeColor = System.Drawing.Color.FromArgb(226, 232, 240);
+            this.btnDangXuat.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
+            this.btnDangXuat.ForeColor = System.Drawing.Color.White;
             this.btnDangXuat.Location = new System.Drawing.Point(15, 34);
             this.btnDangXuat.Name = "btnDangXuat";
-            this.btnDangXuat.Size = new System.Drawing.Size(120, 24);
+            this.btnDangXuat.Size = new System.Drawing.Size(120, 26);
             this.btnDangXuat.TabIndex = 1;
             this.btnDangXuat.Text = "Đổi ca / Thoát";
             this.btnDangXuat.UseVisualStyleBackColor = false;
@@ -183,18 +218,18 @@ namespace BTL.GUI
             this.pnlTopBar.Controls.Add(this.lblClock);
             this.pnlTopBar.Controls.Add(this.lblCurrentModule);
             this.pnlTopBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTopBar.Location = new System.Drawing.Point(235, 0);
+            this.pnlTopBar.Location = new System.Drawing.Point(235, 28);
             this.pnlTopBar.Name = "pnlTopBar";
-            this.pnlTopBar.Size = new System.Drawing.Size(1009, 65);
+            this.pnlTopBar.Size = new System.Drawing.Size(1009, 60);
             this.pnlTopBar.TabIndex = 1;
 
             // lblCurrentModule
             this.lblCurrentModule.AutoSize = true;
-            this.lblCurrentModule.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
-            this.lblCurrentModule.ForeColor = System.Drawing.Color.FromArgb(30, 41, 59);
-            this.lblCurrentModule.Location = new System.Drawing.Point(20, 19);
+            this.lblCurrentModule.Font = new System.Drawing.Font("Segoe UI", 12.5F, System.Drawing.FontStyle.Bold);
+            this.lblCurrentModule.ForeColor = System.Drawing.Color.FromArgb(28, 66, 121);
+            this.lblCurrentModule.Location = new System.Drawing.Point(20, 18);
             this.lblCurrentModule.Name = "lblCurrentModule";
-            this.lblCurrentModule.Size = new System.Drawing.Size(206, 25);
+            this.lblCurrentModule.Size = new System.Drawing.Size(206, 23);
             this.lblCurrentModule.TabIndex = 0;
             this.lblCurrentModule.Text = "TỔNG QUAN HỆ THỐNG";
 
@@ -202,8 +237,8 @@ namespace BTL.GUI
             this.lblClock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblClock.AutoSize = true;
             this.lblClock.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.lblClock.ForeColor = System.Drawing.Color.FromArgb(71, 85, 105);
-            this.lblClock.Location = new System.Drawing.Point(750, 23);
+            this.lblClock.ForeColor = System.Drawing.Color.FromArgb(96, 123, 153);
+            this.lblClock.Location = new System.Drawing.Point(750, 21);
             this.lblClock.Name = "lblClock";
             this.lblClock.Size = new System.Drawing.Size(150, 17);
             this.lblClock.TabIndex = 1;
@@ -212,22 +247,22 @@ namespace BTL.GUI
             // lblCaLam
             this.lblCaLam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCaLam.AutoSize = true;
-            this.lblCaLam.BackColor = System.Drawing.Color.FromArgb(241, 245, 249);
+            this.lblCaLam.BackColor = System.Drawing.Color.FromArgb(234, 245, 252);
             this.lblCaLam.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
-            this.lblCaLam.ForeColor = System.Drawing.Color.FromArgb(37, 99, 235);
-            this.lblCaLam.Padding = new System.Windows.Forms.Padding(6, 3, 6, 3);
-            this.lblCaLam.Location = new System.Drawing.Point(620, 20);
+            this.lblCaLam.ForeColor = System.Drawing.Color.FromArgb(8, 127, 181);
+            this.lblCaLam.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
+            this.lblCaLam.Location = new System.Drawing.Point(620, 17);
             this.lblCaLam.Name = "lblCaLam";
-            this.lblCaLam.Size = new System.Drawing.Size(95, 21);
+            this.lblCaLam.Size = new System.Drawing.Size(95, 23);
             this.lblCaLam.TabIndex = 2;
             this.lblCaLam.Text = "Ca 1 (Sáng)";
 
             // pnlContainer
-            this.pnlContainer.BackColor = System.Drawing.Color.FromArgb(241, 245, 249);
+            this.pnlContainer.BackColor = System.Drawing.Color.FromArgb(244, 249, 252);
             this.pnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContainer.Location = new System.Drawing.Point(235, 65);
+            this.pnlContainer.Location = new System.Drawing.Point(235, 88);
             this.pnlContainer.Name = "pnlContainer";
-            this.pnlContainer.Size = new System.Drawing.Size(1009, 655);
+            this.pnlContainer.Size = new System.Drawing.Size(1009, 632);
             this.pnlContainer.TabIndex = 2;
 
             // FormMain
@@ -237,12 +272,15 @@ namespace BTL.GUI
             this.Controls.Add(this.pnlContainer);
             this.Controls.Add(this.pnlTopBar);
             this.Controls.Add(this.pnlSidebar);
+            this.Controls.Add(this.pnlTopStrip);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular);
             this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Hệ thống Quản lý Cửa hàng Cho thuê Sách truyện - BTL Lập trình trực quan";
+            this.Text = "Hệ thống Quản lý Cửa hàng Cho thuê Sách truyện - Trường Đại học Giao thông Vận tải (UTC)";
 
+            this.pnlTopStrip.ResumeLayout(false);
+            this.pnlTopStrip.PerformLayout();
             this.pnlSidebar.ResumeLayout(false);
             this.pnlNavButtons.ResumeLayout(false);
             this.pnlUserFooter.ResumeLayout(false);
@@ -256,6 +294,9 @@ namespace BTL.GUI
 
         #endregion
 
+        private System.Windows.Forms.Panel pnlTopStrip;
+        private System.Windows.Forms.Label lblTopStripLeft;
+        private System.Windows.Forms.Label lblTopStripRight;
         private System.Windows.Forms.Panel pnlSidebar;
         private System.Windows.Forms.Panel pnlLogo;
         private System.Windows.Forms.Label lblLogo;

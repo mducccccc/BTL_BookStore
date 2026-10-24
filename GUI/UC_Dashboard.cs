@@ -28,7 +28,7 @@ namespace BTL.GUI
         private void InitializeComponent()
         {
             this.Dock = DockStyle.Fill;
-            this.BackColor = Color.FromArgb(241, 245, 249);
+            this.BackColor = UITheme.Page;
             this.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
 
             // Container Panel for Cards
@@ -36,20 +36,21 @@ namespace BTL.GUI
             {
                 Dock = DockStyle.Top,
                 Height = 130,
-                Padding = new Padding(15, 15, 15, 10)
+                Padding = new Padding(15, 15, 15, 10),
+                BackColor = UITheme.Page
             };
 
             int cardWidth = 240;
             int cardGap = 15;
 
-            // Card 1: Tổng đầu sách
-            card1 = CreateMetricCard("Tổng đầu sách", "0", "📚", Color.FromArgb(37, 99, 235), 15 + 0 * (cardWidth + cardGap), out lblTotalSach);
-            // Card 2: Sách đang cho thuê
-            card2 = CreateMetricCard("Sách đang thuê", "0", "⏳", Color.FromArgb(217, 119, 6), 15 + 1 * (cardWidth + cardGap), out lblDangThue);
-            // Card 3: Khách hàng
-            card3 = CreateMetricCard("Khách hàng", "0", "👥", Color.FromArgb(16, 185, 129), 15 + 2 * (cardWidth + cardGap), out lblTotalKH);
-            // Card 4: Lượt trả sách
-            card4 = CreateMetricCard("Phiếu trả đã lập", "0", "🔄", Color.FromArgb(139, 92, 246), 15 + 3 * (cardWidth + cardGap), out lblTotalTra);
+            // Card 1: Tổng đầu sách (Navy)
+            card1 = CreateMetricCard("Tổng đầu sách", "0", "📚", UITheme.Navy, 15 + 0 * (cardWidth + cardGap), out lblTotalSach);
+            // Card 2: Sách đang cho thuê (Blue)
+            card2 = CreateMetricCard("Sách đang thuê", "0", "⏳", UITheme.Blue, 15 + 1 * (cardWidth + cardGap), out lblDangThue);
+            // Card 3: Khách hàng (Gold)
+            card3 = CreateMetricCard("Khách hàng", "0", "👥", Color.FromArgb(202, 138, 4), 15 + 2 * (cardWidth + cardGap), out lblTotalKH);
+            // Card 4: Lượt trả sách (Green)
+            card4 = CreateMetricCard("Phiếu trả đã lập", "0", "🔄", Color.FromArgb(16, 185, 129), 15 + 3 * (cardWidth + cardGap), out lblTotalTra);
 
             pnlCards.Controls.AddRange(new Control[] { card1, card2, card3, card4 });
 
@@ -57,14 +58,15 @@ namespace BTL.GUI
             pnlTable = new Panel
             {
                 Dock = DockStyle.Fill,
-                Padding = new Padding(15, 5, 15, 15)
+                Padding = new Padding(15, 5, 15, 15),
+                BackColor = UITheme.Page
             };
 
             lblRecentTitle = new Label
             {
-                Text = "📌 Danh sách sách đang được thuê chưa trả (Cập nhật trực tiếp)",
+                Text = "📌 Danh sách sách đang được thuê chưa trả (Cập nhật thời gian thực)",
                 Font = new Font("Segoe UI", 11F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(30, 41, 59),
+                ForeColor = UITheme.Navy,
                 Dock = DockStyle.Top,
                 Height = 35
             };
@@ -73,20 +75,15 @@ namespace BTL.GUI
             {
                 Dock = DockStyle.Fill,
                 BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
+                BorderStyle = BorderStyle.FixedSingle,
                 RowHeadersVisible = false,
                 AllowUserToAddRows = false,
                 AllowUserToDeleteRows = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                EnableHeadersVisualStyles = false
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
-            dgvRecent.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249);
-            dgvRecent.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
-            dgvRecent.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            dgvRecent.ColumnHeadersHeight = 38;
-            dgvRecent.RowTemplate.Height = 32;
+            UITheme.StyleDataGridView(dgvRecent);
 
             pnlTable.Controls.Add(dgvRecent);
             pnlTable.Controls.Add(lblRecentTitle);

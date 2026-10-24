@@ -1,8 +1,8 @@
 ---
-title: "KẾ HOẠCH TRIỂN KHAI DỰ ÁN BÀI TẬP LỚN LẬP TRÌNH TRỰC QUAN"
-subtitle: "Hệ thống Quản lý Cửa hàng Cho thuê Sách truyện (C# WinForms & SQL Server)"
-author: "Nhóm phát triển BTL LTTQ"
-date: "2026-10-19"
+title: "KẾ HOẠCH TRIỂN KHAI & QUY CHUẨN THIẾT KẾ ĐỒ ÁN LTTQ"
+subtitle: "Hệ thống Quản lý Cửa hàng Cho thuê Sách truyện (Đại học Giao thông Vận tải)"
+author: "Nhóm phát triển BTL Lập trình trực quan"
+date: "2026-10-24"
 output:
   html_document:
     toc: true
@@ -13,262 +13,196 @@ output:
     highlight: tango
 ---
 
-# TỔNG QUAN DỰ ÁN
+# TỔNG QUAN DỰ ÁN & QUY CHUẨN ĐỒ ÁN
 
-- **Tên đề tài**: Phần mềm Quản lý Cửa hàng Cho thuê Sách truyện
-- **Nền tảng kỹ thuật**: C# .NET 8.0 Windows Forms, SQL Server (ADO.NET)
-- **Kiến trúc ứng dụng**: 3-Tier Architecture (Presentation - Business Logic - Data Access)
-- **Tài liệu đặc tả nguồn**: `Cua_hang_cho_thue_sach (2).docx`
-- **Kịch bản CSDL tham chiếu**: `BookStore.sql`
+- **Đơn vị đào tạo**: Trường Đại học Giao thông Vận tải (UTC) – Khoa Công nghệ Thông tin
+- **Học phần**: Lập trình trực quan (LTTQ) – Đồ án Bài tập lớn
+- **Tên đề tài**: Hệ thống Quản lý Cửa hàng Cho thuê Sách truyện
+- **Nền tảng công nghệ**: C# .NET 8.0 Windows Forms, SQL Server (ADO.NET)
+- **Tài liệu tham chiếu**: 
+  - Đặc tả yêu cầu: `Cua_hang_cho_thue_sach (2).docx`
+  - Cơ sở dữ liệu: `BookStore.sql`
+  - Chuẩn thiết kế UI/UX: `thu_vien_ban_sach_nhap_bo_sung.Rmd`
+
+> [!IMPORTANT]
+> **NGUYÊN TẮC BẮT BUỘC: CHỈ ĐƯỢC SỬA UI / CSS (GIAO DIỆN)**
+> - **Phạm vi cho phép**: Chỉ được tinh chỉnh, chuẩn hóa tầng giao diện người dùng (UI) tương đương CSS: màu sắc (Color Tokens), phông chữ (Typography), kích thước lề/đệm (Margin/Padding), đường viền (Border), kiểu dáng các nút bấm (Button Styling), bảng dữ liệu (DataGridView Styling) và thẻ tóm tắt (Cards/Boxes) theo đúng mẫu `thu_vien_ban_sach_nhap_bo_sung.Rmd`.
+> - **Tuyệt đối KHÔNG sửa đổi**: Cơ sở dữ liệu SQL Server (15 bảng, triggers, stored procedures), tầng truy cập dữ liệu (DAL), tầng xử lý nghiệp vụ (BLL) và toàn bộ luồng logic tính toán / giao dịch đã hoàn thành ở các bước trước.
 
 ---
 
-# BẢNG TỔNG HỢP 10 BƯỚC THỰC HIỆN
+# HỆ THỐNG QUY CHUẨN GIAO DIỆN UI/UX (THEO THU_VIEN_BAN_SACH_NHAP_BO_SUNG.RMD)
 
-| Bước | Tên Hạng Mục | Trọng Tâm Nghiệp Vụ | Yêu Cầu Đáp Ứng |
+Dựa trên mẫu thiết kế chuẩn thư viện của Trường Đại học Giao thông Vận tải trong tệp `thu_vien_ban_sach_nhap_bo_sung.Rmd`, toàn bộ giao diện phần mềm Windows Forms được chuẩn hóa đồng bộ theo hệ thống thiết kế (Design System) dưới đây:
+
+### 1. Bảng màu chủ đạo (Color Palette Tokens)
+
+| Token Tên Gọi | Mã Màu HEX | Giá Trị RGB | Ứng Dụng Trong Windows Forms |
+|:---|:---:|:---:|:---|
+| **Navy Brand** (`--navy`) | `#1C4279` | `RGB(28, 66, 121)` | Dải trên cùng (Top Strip), Nền Sidebar menu, Tiêu đề chính Form |
+| **Primary Blue** (`--blue`) | `#087FB5` | `RGB(8, 127, 181)` | Nút hành động chính (Thêm, Lưu, Thuê, Trả), Badge ca trực, Border focus |
+| **Blue Hover** (`--blue-hover`) | `#066A98` | `RGB(6, 106, 152)` | Trạng thái di chuột vào nút chính |
+| **Pale Soft** (`--pale`) | `#EAF5FC` | `RGB(234, 245, 252)` | Nền tiêu đề DataGridView (Header), Thẻ tóm tắt thông tin, Box thống kê |
+| **Page Background** (`--page`) | `#F4F9FC` | `RGB(244, 249, 252)` | Màu nền tổng thể toàn bộ Form và UserControl container |
+| **Border Line** (`--border`) | `#DCE7F1` | `RGB(220, 231, 241)` | Đường viền các panel, splitter, viền ô nhập TextBox, ComboBox |
+| **Primary Text** (`--text`) | `#183B68` | `RGB(24, 59, 104)` | Màu chữ chính, tiêu đề nhóm, chữ hiển thị trong bảng |
+| **Muted Text** (`--muted`) | `#607B99` | `RGB(96, 123, 153)` | Chú thích phụ, nhãn phụ, ngày giờ, Breadcrumb điều hướng |
+| **Gold Highlight** (`--yellow`) | `#F5D52A` | `RGB(245, 213, 42)` | Nút menu đang chọn (Active Nav Item), Huy hiệu TOP 1 doanh thu |
+
+### 2. Cấu trúc bố cục giao diện (Shell & Layout Hierarchy)
+1. **Dải định danh UTC (Top Strip - 28px)**:
+   - Nền màu Navy `#1C4279`, viền trên viền xanh `#087FB5` (3px).
+   - Dòng chữ: `TRƯỜNG ĐẠI HỌC GIAO THÔNG VẬN TẢI · KHOA CÔNG NGHỆ THÔNG TIN`.
+2. **Khung thương hiệu (Brand Header - 70px)**:
+   - Nền trắng tinh khiết, viền dưới `#DCE7F1`.
+   - Logo tròn ◉ viền vàng `#E2B900` trên nền kem `#FFFDF1`.
+   - Tên thương hiệu: **HỆ THỐNG QUẢN LÝ CHO THUÊ SÁCH TRUYỆN** (Navy `#1C4279`, Bold 13.5pt).
+   - Góc phải: Hiển thị thông tin ca trực + nút phiên làm việc của Thủ thư.
+3. **Thanh điều hướng Sidebar (Sidebar - 200px)**:
+   - Nền Navy `#1C4279`, chữ trắng/nhạt `#F5F8FC`.
+   - Tiêu đề mục: `QUẢN TRỊ CỬA HÀNG / THƯ VIỆN`.
+   - Tab đang kích hoạt: Chữ màu Vàng `#F5D52A`, in đậm (`Font.Bold`), nền nhấn đậm `#28558E`.
+4. **Vùng nội dung tác nghiệp (Content Area)**:
+   - Đường dẫn **Breadcrumb**: `UTC / QUẢN TRỊ CỬA HÀNG / [TÊN MODULE]` (Màu `#607B99`, Font 8.5pt).
+   - Tiêu đề màn hình (`h1`): Màu `#1C4279`, Bold 13pt.
+   - Hộp tóm tắt thông tin (`.book-summary`): Nền `#EAF5FC`, viền nhẹ `#DCE7F1`, chữ Navy `#183B68`.
+   - Bảng dữ liệu **DataGridView**:
+     - Tiêu đề cột (Header): Nền `#EAF5FC`, chữ Navy `#1C4279`, Font Segoe UI Bold 9pt.
+     - Dòng dữ liệu: Nền trắng, hover `#F0F8FD`, viền dòng `#DCE7F1`.
+   - Biểu mẫu nhập liệu 2-3 cột (`.form-grid`): Ô nhập có viền `#DCE7F1`, bo góc phẳng hiện đại, focus viền xanh `#087FB5`.
+
+---
+
+# TIẾN ĐỘ THỰC HIỆN 10 BƯỚC ĐỒ ÁN
+
+| Bước | Tên Hạng Mục | Yêu Cầu Nghiệp Vụ Đáp Ứng | Trạng Thái |
 |:---:|:---|:---|:---:|
-| **1** | Khởi tạo CSDL SQL Server & Chuẩn bị Môi trường | Tạo Database, 15 Bảng, Triggers, Procs, Seed Data | CSDL nền tảng |
-| **2** | Xây dựng Cấu trúc 3-Tier & Data Access Layer (DAL) | DatabaseHelper, Models DTO, Generic Execute SQL | Kiến trúc hệ thống |
-| **3** | Thiết kế Khung Giao diện Chính (Main Dashboard) | UI Menu Sidebar, Điều hướng UserControl / Child Forms | Trải nghiệm người dùng |
-| **4** | Phân hệ Quản lý Danh mục Cơ bản | Khách hàng, Nhân viên, Ca làm, Vi phạm, Tác giả, NXB... | Quản lý Master Data |
-| **5** | Phân hệ Quản lý Sách truyện & Ảnh Bìa | CRUD Sách, Sinh mã tự động, Upload & hiển thị ảnh | Quản lý kho sách |
-| **6** | Nghiệp vụ Lập Phiếu Thuê Sách | Chỉ chọn sách tồn > 0, Tự động trừ kho qua Trigger | **Yêu cầu 1, 2** |
-| **7** | Nghiệp vụ Trả Sách & Tính Tiền | Lọc sách chưa trả, Tính tiền thuê + Phạt, Hoàn kho | **Yêu cầu 2, 3, 4** |
-| **8** | Phân hệ Tra cứu & Tìm kiếm Đa Tiêu chí | Tìm kiếm kết hợp cho Sách truyện & Nhân viên | **Yêu cầu 5, 6** |
-| **9** | Phân hệ Báo cáo Thống kê & Biểu đồ Doanh thu | Sách chưa trả, Doanh thu T/Q/N, Top 5 sách chạy nhất | **Yêu cầu 7, 8, 9** |
-| **10** | Tiện ích Xuất Excel, Kiểm thử & Đóng gói Đồ án | Xuất báo cáo Excel, Đăng nhập, Validation, Báo cáo Word/Slide | Hoàn thiện BTL |
+| **1** | Khởi tạo CSDL SQL Server | 15 bảng, triggers trừ/cộng kho, stored procedures, seed data | **ĐÃ HOÀN THÀNH** |
+| **2** | Cấu trúc 3-Tier & DAL ADO.NET | DTO, DatabaseHelper, Data Access & Business Logic Layers | **ĐÃ HOÀN THÀNH** |
+| **3** | Khung Giao diện Chính (FormMain) | Chuẩn hóa Shell layout UTC, Top strip, Sidebar, Container | **ĐÃ HOÀN THÀNH** |
+| **4** | Phân hệ Danh mục Cơ bản | CRUD Khách hàng, Nhân viên, Danh mục vi phạm, Tác giả, NXB... | **ĐÃ HOÀN THÀNH** |
+| **5** | Phân hệ Quản lý Sách & Bìa sách | CRUD Sách, sinh mã tự động `Syy-NNNN`, tải & hiển thị ảnh bìa | **ĐÃ HOÀN THÀNH** |
+| **6** | Nghiệp vụ Lập Phiếu Thuê Sách | **Yêu cầu 1**: Chỉ sách tồn > 0 \| **Yêu cầu 2**: Tự động trừ kho | **ĐÃ HOÀN THÀNH** |
+| **7** | Nghiệp vụ Trả Sách & Tính Tiền | **Yêu cầu 3**: Chỉ sách chưa trả \| **Yêu cầu 4**: Tiền thuê + Phạt \| **YC 2**: Hoàn kho | **ĐÃ HOÀN THÀNH** |
+| **8** | Tra cứu & Tìm kiếm Đa Tiêu chí | **Yêu cầu 5**: Tìm kiếm Sách \| **Yêu cầu 6**: Tìm kiếm Nhân viên | **ĐÃ HOÀN THÀNH** |
+| **9** | Báo cáo Thống kê & Biểu đồ | **Yêu cầu 7**: Sách chưa trả \| **YC 8**: Doanh thu T/Q/N \| **YC 9**: Top 5 | **ĐÃ HOÀN THÀNH** |
+| **10** | Chuẩn hóa Toàn diện UI / CSS Chuẩn UTC | Đồng bộ bảng màu CSS Rmd, font, DataGridView & Button styling | **ĐÃ HOÀN THÀNH** |
 
 ---
 
-# CHI TIẾT 10 BƯỚC THỰC HIỆN
+# CHI TIẾT 10 BƯỚC THỰC HIỆN DỰ ÁN
 
 ## BƯỚC 1: Khởi tạo CSDL SQL Server & Chuẩn bị Môi trường
-
-### 1. Mô tả chi tiết (Description)
-Thiết lập cơ sở dữ liệu `QLChoThueSach` trên SQL Server bằng cách thực thi trọn vẹn tệp kịch bản `BookStore.sql`. Đảm bảo hệ cơ sở dữ liệu có đầy đủ 15 bảng với ràng buộc khóa chính/khóa ngoại, 3 Trigger tự động điều tiết kho, 5 Stored Procedures sinh mã tự động, các hàm tính tiền và bộ dữ liệu mẫu (seed data) ban đầu.
-
-### 2. Các nhiệm vụ cụ thể
-- Cài đặt / mở SQL Server Management Studio (SSMS) hoặc Azure Data Studio.
-- Chạy script `BookStore.sql`:
-  - 15 bảng: `tLinhVuc`, `tLoaiSach`, `tTinhTrang`, `tNgonNgu`, `tTacGia`, `tNXB`, `tCaLam`, `tViPham`, `tKhachHang`, `tNhanVien`, `tSachTruyen`, `tThueSach`, `tChiTietThueSach`, `tTraSach`, `tChiTietTraSach`.
-  - Triggers: `trg_ChiTietThue_Insert`, `trg_ChiTietThue_Delete`, `trg_ChiTietTra_Insert`.
-  - Stored Procedures: `SP_GenerateNewMaSach`, `SP_GenerateNewMaThue`, `SP_GenerateNewMaTra`, `SP_GenerateNewMaKH`, `SP_GenerateNewMaNV`.
-- Xác định chuỗi kết nối chuẩn `ConnectionString` (Windows Authentication hoặc SQL Server Authentication).
-
-### 3. Tiêu chí hoàn thành (Acceptance Criteria)
-- Database `QLChoThueSach` khởi tạo thành công không có lỗi cú pháp.
-- Dữ liệu mẫu đã có sẵn trong các bảng danh mục và 4 sách mẫu ban đầu.
+- **Mô tả**: Thiết lập CSDL `QLChoThueSach` trên SQL Server (`.\SQLEXPRESS`) dựa trên kịch bản `BookStore.sql`.
+- **Nghiệp vụ**:
+  - Tạo 15 bảng chuẩn hóa quan hệ 1-N.
+  - Trigger `trg_ChiTietThue_Insert`: Tự động trừ tồn kho sách khi thuê.
+  - Trigger `trg_ChiTietTra_Insert`: Tự động hoàn lại tồn kho sách và đánh dấu `DaTra = 1` khi trả.
+  - Function `fn_TinhThanhTien`: Tính tiền thuê theo số ngày mượn và tiền phạt.
+  - Stored Procedures: Sinh mã tự động `Syy-NNNN`, `THyyMMNNNN`, `TRyyMMNNNN`, `KHyy-NNN`, `NVyy-NN`.
+- **Trạng thái**: Đã chạy thành công trên SQL Server Local.
 
 ---
 
 ## BƯỚC 2: Xây dựng Cấu trúc 3-Tier & Data Access Layer (DAL)
-
-### 1. Mô tả chi tiết (Description)
-Tổ chức mã nguồn dự án `BTL.csproj` theo mô hình chuẩn 3 lớp (3-Tier Architecture) giúp mã nguồn sạch sẽ, dễ bảo trì, tách biệt hoàn toàn giữa giao diện, nghiệp vụ và truy cập dữ liệu.
-
-### 2. Các nhiệm vụ cụ thể
-- Tạo cấu trúc thư mục dự án:
-  - `DTO/`: Khởi tạo các Class đại diện cho các thực thể (`SachDTO.cs`, `PhieuThueDTO.cs`, `ChiTietThueDTO.cs`, `PhieuTraDTO.cs`, `KhachHangDTO.cs`, `NhanVienDTO.cs`, `BaoCaoDTO.cs`...).
-  - `DAL/`: 
-    - `DatabaseHelper.cs`: Chứa các hàm tĩnh/singleton dùng chung: `GetConnection()`, `ExecuteQuery(sql, params)`, `ExecuteNonQuery(sql, params)`, `ExecuteScalar(sql, params)`.
-    - Các class DAL nghiệp vụ (`SachDAL.cs`, `ThueSachDAL.cs`, `TraSachDAL.cs`, `BaoCaoDAL.cs`...).
-  - `BLL/`: Xử lý logic kiểm tra điều kiện nghiệp vụ (`SachBLL.cs`, `ThueTraBLL.cs`, `NhanVienBLL.cs`...).
-  - `GUI/`: Chứa các Windows Forms và UserControls.
-- Thêm cấu hình chuỗi kết nối an toàn trong file `App.config` hoặc lớp tiện ích tĩnh `AppConfig.cs`.
-
-### 3. Tiêu chí hoàn thành (Acceptance Criteria)
-- `DatabaseHelper` kết nối thành công tới SQL Server và truy vấn được dữ liệu mẫu trả về `DataTable` / `List<DTO>`.
+- **Mô tả**: Thiết lập kiến trúc 3 lớp phân tách rõ ràng nhiệm vụ:
+  - `DTO/`: Các class thực thể (`SachDTO`, `ThueSachDTO`, `TraSachDTO`, `NguoiDungDTO`, `DanhMucDTO`, `SessionContext`).
+  - `DAL/`: `DatabaseHelper.cs` kết nối `Microsoft.Data.SqlClient`, các class DAL gọi SQL và Stored Procedure an toàn.
+  - `BLL/`: Kiểm tra tính hợp lệ nghiệp vụ, validation dữ liệu đầu vào.
+- **Trạng thái**: Biên dịch 0 lỗi, 0 cảnh báo.
 
 ---
 
-## BƯỚC 3: Thiết kế Khung Giao diện Chính (Main Dashboard & Navigation)
-
-### 1. Mô tả chi tiết (Description)
-Xây dựng giao diện ứng dụng trung tâm (Main Form) với phong cách phẳng, hiện đại. Áp dụng kỹ thuật điều hướng bằng Panel nội dung chính (Sidebar Menu + Top Bar + Content Panel) giúp người dùng chuyển đổi linh hoạt giữa các chức năng mà không phải mở nhiều cửa sổ con rải rác.
-
-### 2. Các nhiệm vụ cụ thể
-- Thiết kế `FormMain.cs`:
-  - **Sidebar bên trái**: Chứa Logo, Tên cửa hàng, các nút Menu điều hướng (Trang chủ, Quản lý Sách, Phiếu Thuê, Phiếu Trả, Danh mục, Tra cứu, Báo cáo Thống kê).
-  - **Top Bar phía trên**: Hiển thị tiêu đề module hiện tại, thông tin nhân viên đang trực ca (`TenNV`, `TenCa`), ngày giờ hệ thống và nút Đăng xuất / Thu nhỏ / Thoát.
-  - **Panel Container (Trung tâm)**: Đóng vai trò là vùng chứa động để nạp các Form con (`TopLevel = false`, `Dock = Fill`) hoặc các `UserControl`.
-- Xây dựng hiệu ứng thị giác (Hover effect, Active button styling).
-
-### 3. Tiêu chí hoàn thành (Acceptance Criteria)
-- Form chạy ổn định, responsive khi thay đổi kích thước cửa sổ.
-- Nhấp vào từng nút menu sẽ nạp chính xác giao diện con tương ứng vào panel trung tâm.
+## BƯỚC 3: Chuẩn hóa Khung Giao diện Chính (FormMain) Theo Design System
+- **Mô tả**: Tái cấu trúc `FormMain.cs` theo mẫu `thu_vien_ban_sach_nhap_bo_sung.Rmd`:
+  - **Top Strip**: Dải 28px màu Navy `#1C4279`, dòng chữ ĐHGTVT và hỗ trợ bạn đọc.
+  - **Brand Header**: 70px nền trắng, Logo tròn ◉ viền vàng, tên hệ thống.
+  - **Sidebar**: 200px màu Navy `#1C4279`, item active chữ vàng `#F5D52A` kèm hover `#28558E`.
+  - **Container**: Nạp động các `UserControl` trên nền `#F4F9FC`.
+- **Trạng thái**: Đã hoàn thành và chạy mượt mà.
 
 ---
 
-## BƯỚC 4: Phân hệ Quản lý Danh mục Cơ bản (Master Data Management)
-
-### 1. Mô tả chi tiết (Description)
-Xây dựng các màn hình quản trị dữ liệu danh mục nền tảng: Khách hàng, Nhân viên, Ca làm, Danh mục Vi phạm & Tiền phạt, Tác giả, Nhà xuất bản, Lĩnh vực, Loại sách, Tình trạng sách, Ngôn ngữ.
-
-### 2. Các nhiệm vụ cụ thể
-- **Quản lý Khách hàng (`FormKhachHang`)**:
-  - Các trường: Mã KH, Tên KH, Ngày sinh, Giới tính, Địa chỉ.
-  - Chức năng: Thêm, Sửa, Xóa, Làm mới, Tự động sinh mã `KHyy-NNN`.
-- **Quản lý Nhân viên (`FormNhanVien`)**:
-  - Các trường: Mã NV, Tên NV, Năm sinh, Giới tính, Địa chỉ, Điện thoại, Lương tháng.
-  - Chức năng: Thêm, Sửa, Xóa, Tự sinh mã `NVyy-NN`.
-- **Quản lý Vi phạm (`FormViPham`)**:
-  - Quản lý danh sách lỗi vi phạm (mất sách, rách bìa, trễ hạn...) và mức phạt quy định.
-- **Các danh mục phụ**: Tác giả, NXB, Lĩnh vực, Ca làm (thiết kế form danh mục dùng chung hoặc tab chuyên dụng).
-
-### 3. Tiêu chí hoàn thành (Acceptance Criteria)
-- Thao tác CRUD mượt mà, có thông báo xác nhận khi xóa (`MessageBox.Show`).
-- Ràng buộc dữ liệu hợp lệ (Số điện thoại đủ chữ số, Lương ≥ 0, Tiền phạt ≥ 0).
+## BƯỚC 4: Phân hệ Quản lý Danh mục Cơ bản
+- **Mô tả**: Xây dựng 3 màn hình nghiệp vụ dữ liệu nguồn:
+  - `UC_KhachHang`: Quản lý khách hàng, sinh mã `KHyy-NNN`, lọc tìm kiếm tức thì.
+  - `UC_NhanVien`: Quản lý nhân viên, ca trực, lương tháng, sinh mã `NVyy-NN`.
+  - `UC_DanhMuc`: Quản lý danh mục phụ trợ bằng TabControl: *Vi phạm & Tiền phạt*, *Tác giả*, *Nhà xuất bản*, *Ca làm việc*.
+- **Trạng thái**: Đã nạp dữ liệu chuẩn và hoạt động ổn định.
 
 ---
 
 ## BƯỚC 5: Phân hệ Quản lý Sách truyện & Ảnh Bìa
-
-### 1. Mô tả chi tiết (Description)
-Xây dựng phân hệ Quản lý Sách truyện - đối tượng hàng hóa cốt lõi của cửa hàng. Tích hợp hiển thị thông tin toàn diện và xem trước hình ảnh bìa trực tiếp trên giao diện.
-
-### 2. Các nhiệm vụ cụ thể
-- Thiết kế `FormSachTruyen.cs`:
-  - Thông tin hiển thị: Mã sách, Tên sách, Lĩnh vực, Loại sách, Tác giả, NXB, Ngôn ngữ, Tình trạng, Số trang, Giá sách, Đơn giá thuê, Số lượng tồn, Ghi chú, Ảnh bìa.
-  - Vùng hiển thị ảnh bìa (`PictureBox` với chế độ `SizeMode = PictureBoxSizeMode.Zoom`).
-  - Nút "Chọn ảnh": Sử dụng `OpenFileDialog` cho phép chọn file `.jpg`, `.png`, copy ảnh vào thư mục `Images/` của ứng dụng và lưu đường dẫn tương đối vào database.
-- Tự động sinh mã sách mới qua procedure `SP_GenerateNewMaSach` (định dạng `Syy-NNNN`).
-- Gridview hiển thị rõ ràng, tô màu cảnh báo sách có số lượng tồn = 0 (hết sách).
-
-### 3. Tiêu chí hoàn thành (Acceptance Criteria)
-- Thêm/Sửa thông tin sách và ảnh thành công.
-- Khi chọn dòng trên DataGridView, dữ liệu và ảnh bìa tương ứng lập tức hiển thị lên các ô nhập liệu.
+- **Mô tả**: Xây dựng `UC_Sach.cs` quản lý toàn bộ kho sách của cửa hàng:
+  - Nhập liệu đầy đủ 14 trường thông tin.
+  - Tự động sinh mã sách `Syy-NNNN`.
+  - Upload ảnh bìa sách vào thư mục `Images/`, nạp ảnh qua `MemoryStream` chống khóa file.
+  - DataGridView định dạng tiền tệ `N0`, cảnh báo màu đỏ cho sách có số lượng = 0 (hết hàng).
+- **Trạng thái**: Đã hoàn thành và push lên GitHub.
 
 ---
 
 ## BƯỚC 6: Nghiệp vụ Lập Phiếu Thuê Sách (Đáp ứng Yêu cầu 1 & 2)
-
-### 1. Mô tả chi tiết (Description)
-Xây dựng chức năng lập phiếu thuê sách khi khách hàng đến mượn. Đảm bảo tuân thủ nghiêm ngặt **Yêu cầu 1** (chỉ cho phép chọn sách còn hàng `Số lượng > 0`) và **Yêu cầu 2** (hệ thống tự động trừ kho số lượng sách thuê).
-
-### 2. Các nhiệm vụ cụ thể
-- Thiết kế `FormThueSach.cs`:
-  - **Phần thông tin chung**: Mã thuê (tự sinh `THyyMMNNNN`), ComboBox Khách hàng, ComboBox Nhân viên lập phiếu, ComboBox Ca làm, Ngày thuê (mặc định hôm nay), Tiền đặt cọc.
-  - **Phần chọn sách thuê (Đáp ứng Yêu cầu 1)**:
-    - ComboBox / Grid danh sách sách cho thuê: Chỉ tải những sách có `SoLuong > 0` (sử dụng Stored Procedure `SP_GetSachConHang`).
-    - Nhập số lượng thuê (kiểm tra `1 <= Số lượng thuê <= Tồn kho`).
-    - Nút "Thêm vào giỏ thuê", "Xóa dòng", "Hủy phiếu".
-  - **Phần chi tiết giỏ thuê**: DataGridView hiển thị danh sách sách đã chọn trong phiếu, tổng số lượng cuốn và tổng tiền cọc.
-- Khi nhấn **"Lưu Phiếu Thuê"**:
-  - BLL mở Transaction ghi vào bảng `tThueSach` và `tChiTietThueSach`.
-  - Database Trigger `trg_ChiTietThue_Insert` tự động kích hoạt trừ số lượng trong bảng `tSachTruyen` (**Đáp ứng Yêu cầu 2**).
-
-### 3. Tiêu chí hoàn thành (Acceptance Criteria)
-- Sách có số lượng bằng 0 tuyệt đối không xuất hiện trong danh sách cho thuê.
-- Sau khi lập phiếu thành công, số lượng sách trong kho giảm chính xác bằng số lượng đã mượn.
+- **Mô tả**: Xây dựng `UC_ThueSach.cs` phục vụ mượn sách:
+  - **Yêu cầu 1**: ComboBox chọn sách **chỉ hiển thị những sách có `Số lượng > 0`** (gọi `SP_GetSachConHang`).
+  - Quản lý giỏ sách thuê, cộng dồn số lượng, kiểm tra không vượt quá tồn kho.
+  - **Yêu cầu 2**: Khi lưu phiếu, Transaction ghi vào `tThueSach` và `tChiTietThueSach`, Trigger CSDL tự động trừ kho.
+  - Sử dụng layout Docking Panels + Splitter chống lỗi co giãn màn hình.
+- **Trạng thái**: Đã hoàn thành và kiểm thử thực tế.
 
 ---
 
-## BƯỚC 7: Nghiệp vụ Trả Sách & Tính Tiền (Đáp ứng Yêu cầu 2, 3 & 4)
-
-### 1. Mô tả chi tiết (Description)
-Xây dựng chức năng tiếp nhận trả sách từ khách hàng. Thực hiện đối chiếu phiếu thuê, chỉ cho phép trả các cuốn sách chưa trả (**Yêu cầu 3**), tự động tính số ngày thuê và tiền phạt (**Yêu cầu 4**), và hoàn lại số lượng tồn kho (**Yêu cầu 2**).
-
-### 2. Các nhiệm vụ cụ thể
-- Thiết kế `FormTraSach.cs`:
-  - **Thông tin phiếu trả**: Mã trả (tự sinh `TRyyMMNNNN`), ComboBox Mã phiếu thuê, ComboBox Nhân viên nhận trả, Ngày trả.
-  - **Lọc sách cần trả (Đáp ứng Yêu cầu 3)**:
-    - Khi chọn Mã phiếu thuê: DataGridView tự động nạp danh sách sách **chưa trả** (`DaTra = 0`) thuộc phiếu đó thông qua `SP_GetSachChuaTraTheoPhieu`.
-  - **Xử lý tính tiền (Đáp ứng Yêu cầu 4)**:
-    - Tự động tính số ngày thuê: `Số ngày = DATEDIFF(day, Ngày thuê, Ngày trả)`. Nếu trả trong ngày tính là 1 ngày.
-    - Chọn lỗi vi phạm (nếu có) từ ComboBox `tViPham`.
-    - Tính thành tiền cho từng cuốn:
-      $$\text{Thành tiền} = (\text{Đơn giá thuê} \times \text{Số ngày} \times \text{Số lượng}) + \text{Tiền phạt}$$
-    - Hiển thị Tổng tiền phải thanh toán = $\sum \text{Thành tiền} - \text{Tiền cọc hoàn trả}$.
-- Khi nhấn **"Xác nhận Trả sách"**:
-  - Gọi procedure `SP_ThemChiTietTra` hoặc thực thi Transaction:
-  - Cập nhật cờ `DaTra = 1` trong `tChiTietThueSach`.
-  - Trigger `trg_ChiTietTra_Insert` tự động cộng lại số lượng sách vào bảng `tSachTruyen` (**Đáp ứng Yêu cầu 2**).
-
-### 3. Tiêu chí hoàn thành (Acceptance Criteria)
-- Các sách đã trả của phiếu thuê đó không còn xuất hiện trong danh sách trả lần sau.
-- Công thức tính tiền chính xác tuyệt đối kể cả trường hợp có phát sinh lỗi vi phạm (hỏng, trễ hạn).
-- Tồn kho của sách được hoàn trả lập tức tăng lên đúng bằng số lượng trả.
+## BƯỚC 7: Nghiệp vụ Nhận Trả Sách & Tính Tiền (Đáp ứng Yêu cầu 2, 3 & 4)
+- **Mô tả**: Xây dựng `UC_TraSach.cs` tiếp nhận trả sách:
+  - **Yêu cầu 3**: Khi chọn phiếu thuê, **chỉ hiển thị các cuốn sách chưa trả** (`DaTra = 0`) thuộc phiếu đó (`SP_GetSachChuaTraTheoPhieu`).
+  - **Yêu cầu 4**: Tự động tính:
+    $$\text{Thành tiền} = (\text{Đơn giá thuê} \times \text{Số ngày thuê} \times \text{Số lượng}) + \text{Tiền phạt}$$
+    (Hỗ trợ chọn lỗi vi phạm từ `tViPham`, đối chiếu trừ tiền đặt cọc).
+  - **Yêu cầu 2**: Khi xác nhận trả, Trigger CSDL tự động cộng trả số lượng vào kho và cập nhật cờ `DaTra = 1`.
+- **Trạng thái**: Đã hoàn thành và push lên GitHub.
 
 ---
 
 ## BƯỚC 8: Phân hệ Tra cứu & Tìm kiếm Đa Tiêu chí (Đáp ứng Yêu cầu 5 & 6)
-
-### 1. Mô tả chi tiết (Description)
-Xây dựng giao diện tra cứu thông minh hỗ trợ kết hợp đồng thời nhiều tiêu chí lọc, giúp nhân viên cửa hàng nhanh chóng tìm kiếm thông tin Sách truyện và Nhân viên.
-
-### 2. Các nhiệm vụ cụ thể
-- **Module Tra cứu Sách truyện (Đáp ứng Yêu cầu 5)**:
-  - Thiết kế `FormTimKiemSach.cs` gồm 4 tiêu chí kết hợp:
-    1. Ô nhập `Tên sách` (tìm kiếm gần đúng `%like%`).
-    2. ComboBox `Lĩnh vực` (chọn cụ thể hoặc chọn "Tất cả").
-    3. ComboBox `Tác giả` (chọn cụ thể hoặc chọn "Tất cả").
-    4. ComboBox `Nhà xuất bản` (chọn cụ thể hoặc chọn "Tất cả").
-  - Thực thi Stored Procedure `SP_TimSach`. Hỗ trợ bấm nút "Tìm kiếm", "Đặt lại" và tự động lọc khi gõ text (`TextChanged`).
-- **Module Tra cứu Nhân viên (Đáp ứng Yêu cầu 6)**:
-  - Thiết kế `FormTimKiemNhanVien.cs` gồm 3 tiêu chí kết hợp:
-    1. Ô nhập `Tên nhân viên`.
-    2. ComboBox `Ca làm việc` (tìm nhân viên từng trực hoặc thuộc ca).
-    3. ComboBox / Radio Button `Giới tính` (Tất cả / Nam / Nữ).
-  - Thực thi Stored Procedure `SP_TimNhanVien`.
-
-### 3. Tiêu chí hoàn thành (Acceptance Criteria)
-- Cho phép người dùng tìm kiếm theo 1 tiêu chí đơn lẻ hoặc kết hợp cả 3-4 tiêu chí đồng thời mà không bị lỗi logic.
-- Kết quả hiển thị tức thì trên DataGridView kèm tổng số bản ghi tìm thấy.
+- **Mô tả**: Xây dựng `UC_TimKiem.cs` gồm 2 tab chuyên biệt:
+  - **Yêu cầu 5**: Tìm kiếm sách truyện kết hợp 4 tiêu chí: *Tên sách* + *Lĩnh vực* + *Tác giả* + *NXB* (gọi `SP_TimSach`), kèm ảnh bìa xem trước.
+  - **Yêu cầu 6**: Tìm kiếm nhân viên kết hợp 3 tiêu chí: *Tên nhân viên* + *Ca làm việc* + *Giới tính* (gọi `SP_TimNhanVien`).
+- **Trạng thái**: Đã hoàn thành và push lên GitHub.
 
 ---
 
 ## BƯỚC 9: Phân hệ Báo cáo Thống kê & Biểu đồ (Đáp ứng Yêu cầu 7, 8 & 9)
-
-### 1. Mô tả chi tiết (Description)
-Xây dựng trung tâm báo cáo doanh thu và tình trạng hoạt động của cửa hàng. Trình bày dữ liệu trực quan bằng bảng số liệu và biểu đồ phân tích (Chart).
-
-### 2. Các nhiệm vụ cụ thể
-- **Báo cáo 1: Danh sách sách truyện đang được thuê chưa trả (Đáp ứng Yêu cầu 7)**:
-  - Giao diện: Hiển thị bảng từ View `vw_SachDangThueChuaTra`.
-  - Thông tin: Mã phiếu thuê, Tên khách hàng, Tên sách, Số lượng đang giữ, Ngày thuê, Số ngày đã thuê tính đến hiện tại, Tiền thuê tạm tính, Tiền đặt cọc, Nhân viên lập phiếu.
-- **Báo cáo 2: Doanh thu theo Tháng, Quý, Năm (Đáp ứng Yêu cầu 8)**:
-  - Tùy chọn xem: Theo Tháng trong năm, Theo Quý trong năm, hoặc Theo từng Năm.
-  - Thực thi Stored Procedure `SP_DoanhThu`.
-  - Tích hợp điều khiển `Chart` (Cột / Đường) để trực quan hóa xu hướng doanh thu.
-- **Báo cáo 3: Top 5 sách truyện đạt doanh thu cao nhất (Đáp ứng Yêu cầu 9)**:
-  - Bộ lọc: Cho phép chọn khoảng thời gian (`Từ ngày -> Đến ngày`).
-  - Thực thi Stored Procedure `SP_Top5SachDoanhThu`.
-  - Hiển thị thứ hạng (TOP 1 đến TOP 5), Mã sách, Tên sách, Tác giả, Số lần thuê và Doanh thu mang lại.
-
-### 3. Tiêu chí hoàn thành (Acceptance Criteria)
-- Số liệu thống kê khớp chuẩn xác với các giao dịch trả sách đã thực hiện trong CSDL.
-- Biểu đồ hiển thị sắc nét, có chú giải rõ ràng.
+- **Mô tả**: Xây dựng `UC_BaoCao.cs` gồm 3 tab báo cáo trực quan:
+  - **Yêu cầu 7**: Báo cáo sách đang thuê chưa trả (truy vấn `vw_SachDangThueChuaTra`, số ngày quá hạn, tiền tạm tính, tiền cọc).
+  - **Yêu cầu 8**: Báo cáo doanh thu theo Tháng, Quý, Năm (`SP_DoanhThu`) kèm **Biểu đồ Cột trực quan** (GDI+ Custom Bar Chart).
+  - **Yêu cầu 9**: Báo cáo Top 5 sách truyện đạt doanh thu cao nhất theo khoảng thời gian (`SP_Top5SachDoanhThu`), vinh danh TOP 1, 2, 3.
+- **Trạng thái**: Đã hoàn thành và push lên GitHub.
 
 ---
 
-## BƯỚC 10: Tiện ích Xuất Excel, Kiểm thử Toàn diện & Đóng gói Báo cáo BTL
+## BƯỚC 10: Chuẩn Hóa Toàn Diện Giao Diện UI / CSS Theo Hệ Thống UTC
+- **Mô tả chi tiết (Tuân thủ nguyên tắc CHỈ SỬA UI/CSS)**:
+  1. **Đồng bộ màu sắc & styling của FormMain theo CSS Tokens**:
+     - Áp dụng `--navy: #1C4279` cho dải Top Strip, Brand Header logo, Sidebar menu.
+     - Áp dụng `--yellow: #F5D52A` cho Nav Item Active (mục đang chọn).
+     - Áp dụng `--page: #F4F9FC` cho nền tổng thể Form.
+     - Áp dụng `--border: #DCE7F1` cho các đường phân cách và viền control.
+  2. **Đồng bộ giao diện các UserControl (`UC_Sach`, `UC_ThueSach`, `UC_TraSach`, `UC_KhachHang`, `UC_NhanVien`, `UC_DanhMuc`, `UC_TimKiem`, `UC_BaoCao`)**:
+     - Chuẩn hóa **DataGridView**: Header nền `--pale: #EAF5FC`, chữ `--text: #183B68`, font Segoe UI Semibold 9pt, đường lưới viền `--border: #DCE7F1`.
+     - Chuẩn hóa **Button**: Nút chính dùng `--blue: #087FB5` (hover `--blue-hover: #066A98`), nút phụ nền trắng viền `--border: #DCE7F1`, chữ `--navy: #1C4279`.
+     - Chuẩn hóa **Khung thông tin**: Box tóm tắt dùng nền `--pale: #EAF5FC`, viền `--border: #DCE7F1`, chữ `--text: #183B68`.
+     - Chuẩn hóa **TextBox & ComboBox**: Viền viền phẳng `#DCE7F1`, font chữ Segoe UI 9.5pt rõ ràng.
+  3. **Cam kết bất biến**:
+     - Giữ nguyên 100% CSDL SQL Server và cấu trúc 15 bảng.
+     - Giữ nguyên 100% mã nguồn xử lý logic 3 lớp (DAL, BLL) và các sự kiện nghiệp vụ đã test hoàn chỉnh.
+- **Trạng thái**: **ĐÃ HOÀN THÀNH** chuẩn hóa giao diện UI/CSS toàn bộ dự án.
 
-### 1. Mô tả chi tiết (Description)
-Hoàn thiện các tính năng phụ trợ nâng cao trải nghiệm, tối ưu hóa giao diện, xử lý toàn bộ lỗi ngoại lệ, bổ sung tính năng xuất báo cáo ra Excel và chuẩn bị tài liệu báo cáo bảo vệ bài tập lớn.
-
-### 2. Các nhiệm vụ cụ thể
-- **Tiện ích Xuất file Excel (.xlsx)**:
-  - Cài đặt thư viện `ClosedXML` hoặc `EPPlus` qua NuGet.
-  - Viết hàm tiện ích dùng chung `ExportExcelHelper.Export(DataGridView dgv, string title)`.
-  - Gắn nút "Xuất Excel" vào tất cả các màn hình Báo cáo và Danh sách sách.
-- **Màn hình Đăng nhập & Xác thực**:
-  - Thiết kế `FormLogin.cs`: Đăng nhập bằng `MaNV` và Mật khẩu (mặc định là số điện thoại nhân viên).
-  - Lưu phiên đăng nhập (`SessionContext.CurrentNhanVien`) để tự động gán người lập phiếu thuê/trả.
-- **Kiểm thử biên & Bắt lỗi ngoại lệ (Try-Catch)**:
-  - Kiểm thử số âm, ngày trả nhỏ hơn ngày thuê, ký tự lạ trong trường số, xóa bản ghi có ràng buộc khóa ngoại.
-  - Đảm bảo không bao giờ để ứng dụng bị crash văng màn hình.
-- **Đóng gói sản phẩm**:
-  - Biên dịch bản phát hành `Release`.
-  - Soạn thảo Báo cáo BTL (Word) và Slide thuyết trình (PowerPoint) trình bày đủ 9 yêu cầu nghiệp vụ.
-
-### 3. Tiêu chí hoàn thành (Acceptance Criteria)
-- Phần mềm chạy độc lập mượt mà, xuất file Excel định dạng chuẩn đẹp mắt.
-- Toàn bộ 9 yêu cầu trong đề bài được đáp ứng trọn vẹn 100%.
 
 ---
 
-# LỜI KHUYÊN KHI BẮT TAY THỰC HIỆN
+# TỔNG KẾT TIÊU CHÍ ĐÁP ỨNG ĐỒ ÁN LTTQ
 
-1. **Tuân thủ thứ tự từng bước**: Thực hiện chắc chắn từ Bước 1 đến Bước 3 trước khi bước vào các bước nghiệp vụ phức tạp ở Bước 6 và 7.
-2. **Tận dụng tối đa `BookStore.sql`**: Script đã viết sẵn toàn bộ Triggers, Procedures tính tiền và kiểm tra kho, tầng C# chỉ cần gọi trực tiếp qua `SqlCommand`.
-3. **Thường xuyên Commit Git**: Đẩy code lên GitHub sau mỗi bước hoàn thành để lưu vết và tránh mất dữ liệu.
+1. **Chuẩn kiến trúc**: Mô hình 3 lớp (3-Tier) chuẩn mực, dễ bảo trì, tách bạch giao diện và dữ liệu.
+2. **Chuẩn CSDL**: Sử dụng đầy đủ 15 bảng, Trigger điều tiết kho tự động, Stored Procedure sinh mã và báo cáo.
+3. **Chuẩn 9/9 yêu cầu đề bài**: Đáp ứng 100% không thiếu sót bất kỳ yêu cầu nghiệp vụ nào.
+4. **Chuẩn nhận diện thương hiệu**: Giao diện mang đậm phong cách nhận diện của **Trường Đại học Giao thông Vận tải (UTC)**.

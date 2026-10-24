@@ -67,18 +67,18 @@ namespace BTL.GUI
             // Đổi giao diện nút bấm
             if (_activeNavButton != null)
             {
-                _activeNavButton.BackColor = Color.FromArgb(15, 23, 42);
-                _activeNavButton.ForeColor = Color.FromArgb(203, 213, 225);
-                _activeNavButton.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
+                _activeNavButton.BackColor = UITheme.Navy;
+                _activeNavButton.ForeColor = Color.FromArgb(245, 248, 252);
+                _activeNavButton.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
             }
 
             _activeNavButton = navButton;
-            _activeNavButton.BackColor = Color.FromArgb(30, 41, 59);
-            _activeNavButton.ForeColor = Color.FromArgb(56, 189, 248); // Sky blue
-            _activeNavButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            _activeNavButton.BackColor = UITheme.NavActiveBg;
+            _activeNavButton.ForeColor = UITheme.Yellow;
+            _activeNavButton.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
 
-            // Cập nhật tiêu đề module
-            lblCurrentModule.Text = title;
+            // Cập nhật tiêu đề module (Breadcrumb phong cách UTC Rmd)
+            lblCurrentModule.Text = $"UTC  /  QUẢN TRỊ  /  {title}";
 
             // Chuyển UserControl
             pnlContainer.SuspendLayout();
