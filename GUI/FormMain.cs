@@ -26,9 +26,9 @@ namespace BTL.GUI
             btnNavSach.Click += (s, e) => SwitchView(btnNavSach, new UC_Placeholder("📚 QUẢN LÝ SÁCH TRUYỆN", "Thêm, sửa, xóa sách, tải ảnh bìa, sinh mã tự động (Bước 5)"), "QUẢN LÝ SÁCH TRUYỆN");
             btnNavThue.Click += (s, e) => SwitchView(btnNavThue, new UC_Placeholder("📝 LẬP PHIẾU THUÊ SÁCH", "Yêu cầu 1: Chỉ chọn sách có số lượng > 0 | Yêu cầu 2: Tự trừ tồn kho (Bước 6)"), "LẬP PHIẾU THUÊ SÁCH");
             btnNavTra.Click += (s, e) => SwitchView(btnNavTra, new UC_Placeholder("🔄 NHẬN TRẢ SÁCH & TÍNH TIỀN", "Yêu cầu 3: Lọc sách chưa trả | Yêu cầu 4: Tính tiền thuê + Phạt | Yêu cầu 2: Hoàn kho (Bước 7)"), "NHẬN TRẢ SÁCH");
-            btnNavKhachHang.Click += (s, e) => SwitchView(btnNavKhachHang, new UC_Placeholder("👥 QUẢN LÝ KHÁCH HÀNG", "Danh mục khách hàng, sinh mã tự động KHyy-NNN (Bước 4)"), "QUẢN LÝ KHÁCH HÀNG");
-            btnNavNhanVien.Click += (s, e) => SwitchView(btnNavNhanVien, new UC_Placeholder("👔 QUẢN LÝ NHÂN VIÊN", "Danh mục nhân viên, ca trực, lương tháng, sinh mã NVyy-NN (Bước 4)"), "QUẢN LÝ NHÂN VIÊN");
-            btnNavDanhMuc.Click += (s, e) => SwitchView(btnNavDanhMuc, new UC_Placeholder("📑 QUẢN LÝ DANH MỤC BỔ TRỢ", "Tác giả, Nhà xuất bản, Lĩnh vực, Loại sách, Tình trạng, Vi phạm & Tiền phạt (Bước 4)"), "DANH MỤC KHÁC");
+            btnNavKhachHang.Click += (s, e) => SwitchView(btnNavKhachHang, new UC_KhachHang(), "QUẢN LÝ KHÁCH HÀNG");
+            btnNavNhanVien.Click += (s, e) => SwitchView(btnNavNhanVien, new UC_NhanVien(), "QUẢN LÝ NHÂN VIÊN");
+            btnNavDanhMuc.Click += (s, e) => SwitchView(btnNavDanhMuc, new UC_DanhMuc(), "DANH MỤC KHÁC");
             btnNavTimKiem.Click += (s, e) => SwitchView(btnNavTimKiem, new UC_Placeholder("🔍 TRA CỨU & TÌM KIẾM ĐA TIÊU CHÍ", "Yêu cầu 5: Tìm kiếm Sách | Yêu cầu 6: Tìm kiếm Nhân viên (Bước 8)"), "TRA CỨU & TÌM KIẾM");
             btnNavBaoCao.Click += (s, e) => SwitchView(btnNavBaoCao, new UC_Placeholder("📊 BÁO CÁO THỐNG KÊ & DOANH THU", "Yêu cầu 7: Sách chưa trả | Yêu cầu 8: Doanh thu T/Q/N | Yêu cầu 9: Top 5 sách (Bước 9)"), "BÁO CÁO & THỐNG KÊ");
 

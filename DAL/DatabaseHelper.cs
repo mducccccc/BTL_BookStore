@@ -9,7 +9,7 @@ namespace BTL.DAL
         // Chuỗi kết nối mặc định (Có thể tùy chỉnh hoặc nạp từ file cấu hình)
         // Hỗ trợ TrustServerCertificate=True để tránh lỗi chứng chỉ SSL trên máy phát triển
         private static string _connectionString =
-            @"Server=.;Database=QLChoThueSach;Trusted_Connection=True;TrustServerCertificate=True;";
+            @"Server=.\SQLEXPRESS;Database=QLChoThueSach;Trusted_Connection=True;TrustServerCertificate=True;";
 
         public static string ConnectionString
         {
