@@ -23,7 +23,7 @@ namespace BTL.GUI
         {
             // Sự kiện điều hướng
             btnNavDashboard.Click += (s, e) => SwitchView(btnNavDashboard, new UC_Dashboard(), "TỔNG QUAN HỆ THỐNG");
-            btnNavSach.Click += (s, e) => SwitchView(btnNavSach, new UC_Placeholder("📚 QUẢN LÝ SÁCH TRUYỆN", "Thêm, sửa, xóa sách, tải ảnh bìa, sinh mã tự động (Bước 5)"), "QUẢN LÝ SÁCH TRUYỆN");
+            btnNavSach.Click += (s, e) => SwitchView(btnNavSach, new UC_Sach(), "QUẢN LÝ SÁCH TRUYỆN");
             btnNavThue.Click += (s, e) => SwitchView(btnNavThue, new UC_Placeholder("📝 LẬP PHIẾU THUÊ SÁCH", "Yêu cầu 1: Chỉ chọn sách có số lượng > 0 | Yêu cầu 2: Tự trừ tồn kho (Bước 6)"), "LẬP PHIẾU THUÊ SÁCH");
             btnNavTra.Click += (s, e) => SwitchView(btnNavTra, new UC_Placeholder("🔄 NHẬN TRẢ SÁCH & TÍNH TIỀN", "Yêu cầu 3: Lọc sách chưa trả | Yêu cầu 4: Tính tiền thuê + Phạt | Yêu cầu 2: Hoàn kho (Bước 7)"), "NHẬN TRẢ SÁCH");
             btnNavKhachHang.Click += (s, e) => SwitchView(btnNavKhachHang, new UC_KhachHang(), "QUẢN LÝ KHÁCH HÀNG");
