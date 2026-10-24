@@ -29,7 +29,7 @@ namespace BTL.GUI
             btnNavKhachHang.Click += (s, e) => SwitchView(btnNavKhachHang, new UC_KhachHang(), "QUẢN LÝ KHÁCH HÀNG");
             btnNavNhanVien.Click += (s, e) => SwitchView(btnNavNhanVien, new UC_NhanVien(), "QUẢN LÝ NHÂN VIÊN");
             btnNavDanhMuc.Click += (s, e) => SwitchView(btnNavDanhMuc, new UC_DanhMuc(), "DANH MỤC KHÁC");
-            btnNavTimKiem.Click += (s, e) => SwitchView(btnNavTimKiem, new UC_Placeholder("TRA CỨU & TÌM KIẾM ĐA TIÊU CHÍ", "Yêu cầu 5: Tìm kiếm Sách | Yêu cầu 6: Tìm kiếm Nhân viên (Bước 8)"), "TRA CỨU & TÌM KIẾM");
+            btnNavTimKiem.Click += (s, e) => SwitchView(btnNavTimKiem, new UC_TimKiem(), "TRA CỨU & TÌM KIẾM");
             btnNavBaoCao.Click += (s, e) => SwitchView(btnNavBaoCao, new UC_Placeholder("BÁO CÁO THỐNG KÊ & DOANH THU", "Yêu cầu 7: Sách chưa trả | Yêu cầu 8: Doanh thu T/Q/N | Yêu cầu 9: Top 5 sách (Bước 9)"), "BÁO CÁO & THỐNG KÊ");
 
             // Nút đăng xuất / thoát
