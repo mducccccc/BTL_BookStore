@@ -143,7 +143,7 @@ namespace BTL.GUI
             var lblGiaSach = new Label { Text = "Giá bìa (đ):", Location = new Point(595, 15), AutoSize = true, ForeColor = Color.FromArgb(71, 85, 105) };
             numGiaSach = new NumericUpDown { Location = new Point(690, 12), Width = 140, Minimum = 0, Maximum = 10000000, Increment = 5000, ThousandsSeparator = true, Value = 50000 };
 
-            var lblDonGiaThue = new Label { Text = "Giá thuê/ngày:", Location = new Point(595, 50), AutoSize = true, ForeColor = Color.FromArgb(71, 85, 105), Font = new Font("Segoe UI", 9.5F, FontStyle.Bold) };
+            var lblDonGiaThue = new Label { Text = "Giá thuê/Day:", Location = new Point(595, 50), AutoSize = true, ForeColor = Color.FromArgb(71, 85, 105), Font = new Font("Segoe UI", 9.5F, FontStyle.Bold) };
             numDonGiaThue = new NumericUpDown { Location = new Point(690, 47), Width = 140, Minimum = 0, Maximum = 1000000, Increment = 1000, ThousandsSeparator = true, Value = 3000 };
 
             var lblGhiChu = new Label { Text = "Ghi chú:", Location = new Point(595, 85), AutoSize = true, ForeColor = Color.FromArgb(71, 85, 105) };
