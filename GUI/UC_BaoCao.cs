@@ -105,10 +105,25 @@ namespace BTL.GUI
             btnLamMoiChuaTra.FlatAppearance.BorderSize = 0;
             btnLamMoiChuaTra.Click += (s, e) => LoadBaoCao1();
 
+            var btnXuatExcel1 = new Button
+            {
+                Text = "📥 Xuất Excel",
+                Location = new Point(160, 45),
+                Size = new Size(110, 34),
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.White,
+                ForeColor = UITheme.Navy,
+                Font = new Font("Segoe UI", 9F, FontStyle.Bold),
+                Cursor = Cursors.Hand
+            };
+            btnXuatExcel1.FlatAppearance.BorderColor = UITheme.Border;
+            btnXuatExcel1.FlatAppearance.BorderSize = 1;
+            btnXuatExcel1.Click += (s, e) => ExportExcelHelper.Export(dgvSachChuaTra, "BaoCao_SachChuaTra", "Báo Cáo Sách Truyện Đang Được Thuê Chưa Trả");
+
             lblTongChuaTra = new Label
             {
-                Text = "Tổng sách đang thuê: 0 cuốn",
-                Location = new Point(170, 52),
+                Text = "Tổng sách: 0 cuốn",
+                Location = new Point(285, 52),
                 AutoSize = true,
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(217, 119, 6)
@@ -116,8 +131,8 @@ namespace BTL.GUI
 
             lblTongTienTamTinh = new Label
             {
-                Text = "Tiền thuê tạm tính: 0 đ",
-                Location = new Point(410, 52),
+                Text = "Tạm tính: 0 đ",
+                Location = new Point(470, 52),
                 AutoSize = true,
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(16, 185, 129)
@@ -125,14 +140,14 @@ namespace BTL.GUI
 
             lblTongTienCoc = new Label
             {
-                Text = "Tiền cọc đang giữ: 0 đ",
-                Location = new Point(650, 52),
+                Text = "Cọc giữ: 0 đ",
+                Location = new Point(660, 52),
                 AutoSize = true,
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(139, 92, 246)
             };
 
-            pnlTop.Controls.AddRange(new Control[] { lblTitle, btnLamMoiChuaTra, lblTongChuaTra, lblTongTienTamTinh, lblTongTienCoc });
+            pnlTop.Controls.AddRange(new Control[] { lblTitle, btnLamMoiChuaTra, btnXuatExcel1, lblTongChuaTra, lblTongTienTamTinh, lblTongTienCoc });
 
             var pnlGrid = new Panel { Dock = DockStyle.Fill, Padding = new Padding(15) };
 
@@ -242,16 +257,31 @@ namespace BTL.GUI
             btnXemDoanhThu.FlatAppearance.BorderSize = 0;
             btnXemDoanhThu.Click += (s, e) => LoadBaoCao2();
 
+            var btnXuatExcel2 = new Button
+            {
+                Text = "📥 Xuất Excel",
+                Location = new Point(530, 21),
+                Size = new Size(110, 32),
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.White,
+                ForeColor = UITheme.Navy,
+                Font = new Font("Segoe UI", 9F, FontStyle.Bold),
+                Cursor = Cursors.Hand
+            };
+            btnXuatExcel2.FlatAppearance.BorderColor = UITheme.Border;
+            btnXuatExcel2.FlatAppearance.BorderSize = 1;
+            btnXuatExcel2.Click += (s, e) => ExportExcelHelper.Export(dgvDoanhThu, "BaoCao_DoanhThu", $"Báo Cáo Doanh Thu {cboKieuDoanhThu.Text} Năm {numNamDoanhThu.Value}");
+
             lblTongDoanhThu = new Label
             {
                 Text = "Tổng doanh thu: 0 đ",
-                Location = new Point(540, 27),
+                Location = new Point(660, 27),
                 AutoSize = true,
                 Font = new Font("Segoe UI", 11F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(16, 185, 129)
             };
 
-            pnlTop.Controls.AddRange(new Control[] { lblKieu, cboKieuDoanhThu, lblNam, numNamDoanhThu, btnXemDoanhThu, lblTongDoanhThu });
+            pnlTop.Controls.AddRange(new Control[] { lblKieu, cboKieuDoanhThu, lblNam, numNamDoanhThu, btnXemDoanhThu, btnXuatExcel2, lblTongDoanhThu });
 
             // Body: Bên trái là Bảng số liệu, bên phải là Biểu đồ trực quan
             var splitDoanhThu = new Panel { Dock = DockStyle.Fill, Padding = new Padding(15) };
@@ -455,7 +485,7 @@ namespace BTL.GUI
             {
                 Text = "Xem Top 5",
                 Location = new Point(590, 40),
-                Size = new Size(110, 32),
+                Size = new Size(100, 32),
                 FlatStyle = FlatStyle.Flat,
                 BackColor = UITheme.Blue,
                 ForeColor = Color.White,
@@ -464,6 +494,21 @@ namespace BTL.GUI
             };
             btnXemTop5.FlatAppearance.BorderSize = 0;
             btnXemTop5.Click += (s, e) => LoadBaoCao3();
+
+            var btnXuatExcel3 = new Button
+            {
+                Text = "📥 Xuất Excel",
+                Location = new Point(700, 40),
+                Size = new Size(110, 32),
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.White,
+                ForeColor = UITheme.Navy,
+                Font = new Font("Segoe UI", 9F, FontStyle.Bold),
+                Cursor = Cursors.Hand
+            };
+            btnXuatExcel3.FlatAppearance.BorderColor = UITheme.Border;
+            btnXuatExcel3.FlatAppearance.BorderSize = 1;
+            btnXuatExcel3.Click += (s, e) => ExportExcelHelper.Export(dgvTop5, "BaoCao_Top5SachDoanhThu", "Báo Cáo Top 5 Sách Truyện Đạt Doanh Thu Cao Nhất");
 
             lblTop1Info = new Label
             {
@@ -474,7 +519,7 @@ namespace BTL.GUI
                 ForeColor = Color.FromArgb(217, 119, 6)
             };
 
-            pnlTop.Controls.AddRange(new Control[] { lblHeader, lblTu, dtpTuNgay, lblDen, dtpDenNgay, chkTatCaThoiGian, btnXemTop5, lblTop1Info });
+            pnlTop.Controls.AddRange(new Control[] { lblHeader, lblTu, dtpTuNgay, lblDen, dtpDenNgay, chkTatCaThoiGian, btnXemTop5, btnXuatExcel3, lblTop1Info });
 
             var pnlGrid = new Panel { Dock = DockStyle.Fill, Padding = new Padding(15) };
 

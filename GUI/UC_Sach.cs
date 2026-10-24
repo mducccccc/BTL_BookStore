@@ -198,8 +198,23 @@ namespace BTL.GUI
             btnXoa = CreateButton("Xóa sách", Color.FromArgb(220, 38, 38), 260, 225);
             btnLamMoi = CreateButton("Làm mới", UITheme.Muted, 380, 225);
 
-            var lblTim = new Label { Text = "Tìm nhanh:", Location = new Point(530, 230), AutoSize = true, ForeColor = Color.FromArgb(71, 85, 105) };
-            txtTimKiem = new TextBox { Location = new Point(610, 226), Width = 220, PlaceholderText = "Nhập tên sách, tác giả..." };
+            var btnXuatExcel = new Button
+            {
+                Text = "📥 Xuất Excel",
+                Location = new Point(500, 225),
+                Size = new Size(105, 32),
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.White,
+                ForeColor = UITheme.Navy,
+                Font = new Font("Segoe UI", 9F, FontStyle.Bold),
+                Cursor = Cursors.Hand
+            };
+            btnXuatExcel.FlatAppearance.BorderColor = UITheme.Border;
+            btnXuatExcel.FlatAppearance.BorderSize = 1;
+            btnXuatExcel.Click += (s, e) => ExportExcelHelper.Export(dgvSach, "DanhSach_SachTruyen", "Danh Sách Kho Sách Truyện");
+
+            var lblTim = new Label { Text = "Tìm nhanh:", Location = new Point(620, 230), AutoSize = true, ForeColor = Color.FromArgb(71, 85, 105) };
+            txtTimKiem = new TextBox { Location = new Point(700, 226), Width = 180, PlaceholderText = "Nhập tên sách, tác giả..." };
             txtTimKiem.TextChanged += (s, e) => FilterData();
 
             pnlInput.Controls.AddRange(new Control[]
@@ -208,7 +223,7 @@ namespace BTL.GUI
                 lblNXB, cboNXB, lblNN, cboNgonNgu, lblTT, cboTinhTrang, lblSoTrang, numSoTrang, lblSoLuong, numSoLuong,
                 lblGiaSach, numGiaSach, lblDonGiaThue, numDonGiaThue, lblGhiChu, txtGhiChu, txtAnh,
                 pnlPicBorder, btnChonAnh, btnXoaAnh,
-                btnThem, btnSua, btnXoa, btnLamMoi,
+                btnThem, btnSua, btnXoa, btnLamMoi, btnXuatExcel,
                 lblTim, txtTimKiem
             });
 

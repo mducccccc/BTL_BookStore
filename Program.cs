@@ -9,9 +9,14 @@ namespace BTL
         static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new GUI.FormMain());
+
+            // Hiển thị Form Đăng nhập (Bước 10)
+            using var login = new GUI.FormLogin();
+            if (login.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new GUI.FormMain());
+            }
         }
     }
 }

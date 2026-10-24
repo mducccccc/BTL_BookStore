@@ -97,12 +97,26 @@ namespace BTL.GUI
         private void BtnDangXuat_Click(object? sender, EventArgs e)
         {
             var res = MessageBox.Show(
-                "Bạn có muốn thoát chương trình không?",
-                "Xác nhận thoát",
-                MessageBoxButtons.YesNo,
+                "Bạn có muốn đăng xuất tài khoản hiện tại không?\n\n- Chọn Yes: Đăng xuất để đổi ca trực / tài khoản\n- Chọn No: Thoát hoàn toàn chương trình\n- Chọn Cancel: Tiếp tục làm việc",
+                "Xác nhận phiên làm việc",
+                MessageBoxButtons.YesNoCancel,
                 MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
+            {
+                this.Hide();
+                using var login = new FormLogin();
+                if (login.ShowDialog() == DialogResult.OK)
+                {
+                    InitSessionData();
+                    this.Show();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
+            else if (res == DialogResult.No)
             {
                 Application.Exit();
             }
