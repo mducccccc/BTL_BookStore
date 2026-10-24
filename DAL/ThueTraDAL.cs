@@ -160,15 +160,30 @@ namespace BTL.DAL
                     cmd.ExecuteNonQuery();
                 }
 
-                // 2. Thêm từng chi tiết trả thông qua stored procedure SP_ThemChiTietTra
+                // 2. Thêm từng chi tiết trả (Trigger trg_ChiTietTra_Insert sẽ tự cộng lại kho và đánh dấu DaTra = 1)
+                string sqlCT = @"
+                    INSERT INTO tChiTietTraSach (MaTra, MaSach, MaVP, ThanhTien)
+                    VALUES (@MaTra, @MaSach, @MaVP, @ThanhTien)";
+
                 foreach (var ct in chiTietList)
                 {
-                    using var cmdCT = new SqlCommand("SP_ThemChiTietTra", conn, trans);
-                    cmdCT.CommandType = CommandType.StoredProcedure;
+                    using var cmdCT = new SqlCommand(sqlCT, conn, trans);
                     cmdCT.Parameters.AddWithValue("@MaTra", tra.MaTra);
                     cmdCT.Parameters.AddWithValue("@MaSach", ct.MaSach);
                     cmdCT.Parameters.AddWithValue("@MaVP", string.IsNullOrWhiteSpace(ct.MaVP) ? DBNull.Value : (object)ct.MaVP);
+                    cmdCT.Parameters.AddWithValue("@ThanhTien", ct.ThanhTien);
                     cmdCT.ExecuteNonQuery();
+                }
+
+                // 3. Cập nhật tổng tiền vào phiếu trả
+                string sqlUp = @"
+                    UPDATE tTraSach 
+                    SET TongTien = (SELECT ISNULL(SUM(ThanhTien), 0) FROM tChiTietTraSach WHERE MaTra = @MaTra)
+                    WHERE MaTra = @MaTra";
+                using (var cmdUp = new SqlCommand(sqlUp, conn, trans))
+                {
+                    cmdUp.Parameters.AddWithValue("@MaTra", tra.MaTra);
+                    cmdUp.ExecuteNonQuery();
                 }
 
                 trans.Commit();

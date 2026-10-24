@@ -19,5 +19,11 @@
     <Compile Update="GUI\UC_Placeholder.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="GUI\UC_Sach.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GUI\UC_ThueSach.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

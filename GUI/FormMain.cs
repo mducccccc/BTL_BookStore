@@ -25,12 +25,12 @@ namespace BTL.GUI
             btnNavDashboard.Click += (s, e) => SwitchView(btnNavDashboard, new UC_Dashboard(), "TỔNG QUAN HỆ THỐNG");
             btnNavSach.Click += (s, e) => SwitchView(btnNavSach, new UC_Sach(), "QUẢN LÝ SÁCH TRUYỆN");
             btnNavThue.Click += (s, e) => SwitchView(btnNavThue, new UC_ThueSach(), "LẬP PHIẾU THUÊ SÁCH");
-            btnNavTra.Click += (s, e) => SwitchView(btnNavTra, new UC_Placeholder("🔄 NHẬN TRẢ SÁCH & TÍNH TIỀN", "Yêu cầu 3: Lọc sách chưa trả | Yêu cầu 4: Tính tiền thuê + Phạt | Yêu cầu 2: Hoàn kho (Bước 7)"), "NHẬN TRẢ SÁCH");
+            btnNavTra.Click += (s, e) => SwitchView(btnNavTra, new UC_TraSach(), "NHẬN TRẢ SÁCH");
             btnNavKhachHang.Click += (s, e) => SwitchView(btnNavKhachHang, new UC_KhachHang(), "QUẢN LÝ KHÁCH HÀNG");
             btnNavNhanVien.Click += (s, e) => SwitchView(btnNavNhanVien, new UC_NhanVien(), "QUẢN LÝ NHÂN VIÊN");
             btnNavDanhMuc.Click += (s, e) => SwitchView(btnNavDanhMuc, new UC_DanhMuc(), "DANH MỤC KHÁC");
-            btnNavTimKiem.Click += (s, e) => SwitchView(btnNavTimKiem, new UC_Placeholder("🔍 TRA CỨU & TÌM KIẾM ĐA TIÊU CHÍ", "Yêu cầu 5: Tìm kiếm Sách | Yêu cầu 6: Tìm kiếm Nhân viên (Bước 8)"), "TRA CỨU & TÌM KIẾM");
-            btnNavBaoCao.Click += (s, e) => SwitchView(btnNavBaoCao, new UC_Placeholder("📊 BÁO CÁO THỐNG KÊ & DOANH THU", "Yêu cầu 7: Sách chưa trả | Yêu cầu 8: Doanh thu T/Q/N | Yêu cầu 9: Top 5 sách (Bước 9)"), "BÁO CÁO & THỐNG KÊ");
+            btnNavTimKiem.Click += (s, e) => SwitchView(btnNavTimKiem, new UC_Placeholder("TRA CỨU & TÌM KIẾM ĐA TIÊU CHÍ", "Yêu cầu 5: Tìm kiếm Sách | Yêu cầu 6: Tìm kiếm Nhân viên (Bước 8)"), "TRA CỨU & TÌM KIẾM");
+            btnNavBaoCao.Click += (s, e) => SwitchView(btnNavBaoCao, new UC_Placeholder("BÁO CÁO THỐNG KÊ & DOANH THU", "Yêu cầu 7: Sách chưa trả | Yêu cầu 8: Doanh thu T/Q/N | Yêu cầu 9: Top 5 sách (Bước 9)"), "BÁO CÁO & THỐNG KÊ");
 
             // Nút đăng xuất / thoát
             btnDangXuat.Click += BtnDangXuat_Click;
