@@ -92,18 +92,21 @@ namespace BTL.GUI
             pnlTop.Controls.Add(lblTitle);
             pnlTop.Controls.Add(lblSubtitle);
 
-            // 2. Main Body Split: Trái là Lập Phiếu Thuê Mới, Phải là Lịch Sử Phiếu Thuê
-            var splitMain = new SplitContainer
+            // 2. Main Body Container
+            var pnlBody = new Panel
             {
                 Dock = DockStyle.Fill,
-                Orientation = Orientation.Vertical,
-                SplitterDistance = 650,
-                Panel1MinSize = 500,
-                Panel2MinSize = 350
+                BackColor = Color.FromArgb(241, 245, 249)
             };
 
-            // ===== PANEL 1: LẬP PHIẾU THUÊ MỚI =====
-            var pnlLapPhieu = new Panel { Dock = DockStyle.Fill, BackColor = Color.White, Padding = new Padding(15) };
+            // ===== PANEL 1: LẬP PHIẾU THUÊ MỚI (BÊN TRÁI) =====
+            var pnlLapPhieu = new Panel
+            {
+                Dock = DockStyle.Left,
+                Width = 630,
+                BackColor = Color.White,
+                Padding = new Padding(15)
+            };
 
             // Group 1: Thông tin chung
             var grpInfo = new GroupBox
@@ -286,9 +289,16 @@ namespace BTL.GUI
             pnlLapPhieu.Controls.Add(grpGio);
             pnlLapPhieu.Controls.Add(grpChonSach);
             pnlLapPhieu.Controls.Add(grpInfo);
-            splitMain.Panel1.Controls.Add(pnlLapPhieu);
 
-            // ===== PANEL 2: LỊCH SỬ CÁC PHIẾU THUÊ ĐÃ LẬP =====
+            // Splitter giữa 2 cột cho phép co giãn kích thước
+            var splitter = new Splitter
+            {
+                Dock = DockStyle.Left,
+                Width = 5,
+                BackColor = Color.FromArgb(226, 232, 240)
+            };
+
+            // ===== PANEL 2: LỊCH SỬ CÁC PHIẾU THUÊ ĐÃ LẬP (BÊN PHẢI) =====
             var pnlLichSu = new Panel { Dock = DockStyle.Fill, BackColor = Color.White, Padding = new Padding(15) };
 
             var lblHistTitle = new Label
@@ -329,9 +339,13 @@ namespace BTL.GUI
             pnlLichSu.Controls.Add(dgvLichSuThue);
             pnlLichSu.Controls.Add(pnlTimHist);
             pnlLichSu.Controls.Add(lblHistTitle);
-            splitMain.Panel2.Controls.Add(pnlLichSu);
 
-            this.Controls.Add(splitMain);
+            // Nạp các cột vào pnlBody (Dock Fill xếp trước, sau đó là Splitter, rồi Dock Left)
+            pnlBody.Controls.Add(pnlLichSu);
+            pnlBody.Controls.Add(splitter);
+            pnlBody.Controls.Add(pnlLapPhieu);
+
+            this.Controls.Add(pnlBody);
             this.Controls.Add(pnlTop);
         }
 
