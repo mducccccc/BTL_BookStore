@@ -48,7 +48,7 @@ namespace BTL.GUI
 
             var lblTitle = new Label
             {
-                Text = "👥 DANH MỤC KHÁCH HÀNG",
+                Text = " DANH MỤC KHÁCH HÀNG",
                 Font = new Font("Segoe UI", 13F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(30, 41, 59),
                 AutoSize = true,
@@ -83,7 +83,7 @@ namespace BTL.GUI
 
             var btnAutoMa = new Button
             {
-                Text = "⚡ Tự sinh",
+                Text = "Tự sinh",
                 Location = new Point(295, 15),
                 Width = 75,
                 Height = 27,
@@ -108,13 +108,13 @@ namespace BTL.GUI
             txtDiaChi = new TextBox { Location = new Point(140, 96), Width = 690 };
 
             // Buttons
-            btnThem = CreateButton("➕ Thêm mới", Color.FromArgb(16, 185, 129), 25, 138);
-            btnSua = CreateButton("✏️ Cập nhật", Color.FromArgb(37, 99, 235), 145, 138);
-            btnXoa = CreateButton("🗑️ Xóa", Color.FromArgb(239, 68, 68), 265, 138);
-            btnLamMoi = CreateButton("🔄 Làm mới", Color.FromArgb(100, 116, 139), 385, 138);
+            btnThem = CreateButton(" Thêm mới", Color.FromArgb(16, 185, 129), 25, 138);
+            btnSua = CreateButton(" Cập nhật", Color.FromArgb(37, 99, 235), 145, 138);
+            btnXoa = CreateButton(" Xóa", Color.FromArgb(239, 68, 68), 265, 138);
+            btnLamMoi = CreateButton(" Làm mới", Color.FromArgb(100, 116, 139), 385, 138);
 
             // Tìm kiếm
-            var lblTim = new Label { Text = "🔍 Tìm kiếm:", Location = new Point(550, 142), AutoSize = true, ForeColor = Color.FromArgb(71, 85, 105) };
+            var lblTim = new Label { Text = " Tìm kiếm:", Location = new Point(550, 142), AutoSize = true, ForeColor = Color.FromArgb(71, 85, 105) };
             txtTimKiem = new TextBox { Location = new Point(635, 138), Width = 195 };
             txtTimKiem.TextChanged += (s, e) => FilterData();
 
