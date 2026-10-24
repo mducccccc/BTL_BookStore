@@ -23,8 +23,8 @@ namespace BTL.GUI
 
         private void InitializeComponent()
         {
-            this.Text = "Đăng nhập - Quản lý Cửa hàng Cho thuê Sách truyện UTC";
-            this.Size = new Size(450, 550);
+            this.Text = "Đăng nhập - Cửa hàng Cho thuê Sách truyện BookStore";
+            this.Size = new Size(450, 540);
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -36,36 +36,36 @@ namespace BTL.GUI
             var pnlTop = new Panel
             {
                 Dock = DockStyle.Top,
-                Height = 135,
+                Height = 125,
                 BackColor = UITheme.Navy
             };
 
             var lblLogo = new Label
             {
-                Text = "◉",
-                Font = new Font("Segoe UI", 26F, FontStyle.Bold),
+                Text = "BOOKSTORE PRO",
+                Font = new Font("Segoe UI", 16F, FontStyle.Bold),
                 ForeColor = UITheme.Yellow,
-                Location = new Point(190, 8),
-                Size = new Size(60, 45),
+                Location = new Point(20, 18),
+                Size = new Size(400, 32),
                 TextAlign = ContentAlignment.MiddleCenter
             };
 
             var lblSchool = new Label
             {
-                Text = "TRƯỜNG ĐẠI HỌC GIAO THÔNG VẬN TẢI\nKHOA CÔNG NGHỆ THÔNG TIN",
+                Text = "CỬA HÀNG CHO THUÊ SÁCH TRUYỆN",
                 Font = new Font("Segoe UI", 8.5F, FontStyle.Regular),
                 ForeColor = Color.FromArgb(220, 231, 241),
-                Location = new Point(20, 52),
-                Size = new Size(400, 32),
+                Location = new Point(20, 55),
+                Size = new Size(400, 20),
                 TextAlign = ContentAlignment.TopCenter
             };
 
             var lblApp = new Label
             {
-                Text = "HỆ THỐNG CHO THUÊ SÁCH TRUYỆN",
-                Font = new Font("Segoe UI", 11.5F, FontStyle.Bold),
+                Text = "HỆ THỐNG QUẢN LÝ DỊCH VỤ",
+                Font = new Font("Segoe UI", 10.5F, FontStyle.Bold),
                 ForeColor = Color.White,
-                Location = new Point(20, 92),
+                Location = new Point(20, 80),
                 Size = new Size(400, 25),
                 TextAlign = ContentAlignment.TopCenter
             };
@@ -172,7 +172,7 @@ namespace BTL.GUI
             // Gợi ý tài khoản demo
             var lblHint = new Label
             {
-                Text = "💡 Gợi ý tài khoản demo: NV25-01 / 0988123456\n(Mật khẩu mặc định là số điện thoại đã lưu trong tNhanVien)",
+                Text = "Gợi ý tài khoản: NV25-01 / 0988123456\n(Mật khẩu mặc định là số điện thoại đã lưu trong tNhanVien)",
                 Location = new Point(35, 365),
                 Size = new Size(365, 32),
                 ForeColor = UITheme.Muted,

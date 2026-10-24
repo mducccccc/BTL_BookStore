@@ -69,20 +69,20 @@ namespace BTL.GUI
             this.lblTopStripLeft.ForeColor = System.Drawing.Color.White;
             this.lblTopStripLeft.Location = new System.Drawing.Point(16, 6);
             this.lblTopStripLeft.Name = "lblTopStripLeft";
-            this.lblTopStripLeft.Size = new System.Drawing.Size(425, 15);
+            this.lblTopStripLeft.Size = new System.Drawing.Size(460, 15);
             this.lblTopStripLeft.TabIndex = 0;
-            this.lblTopStripLeft.Text = "TRƯỜNG ĐẠI HỌC GIAO THÔNG VẬN TẢI · KHOA CÔNG NGHỆ THÔNG TIN";
+            this.lblTopStripLeft.Text = "HỆ THỐNG QUẢN LÝ CỬA HÀNG CHO THUÊ SÁCH TRUYỆN - BOOKSTORE PRO";
 
             // lblTopStripRight
             this.lblTopStripRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTopStripRight.AutoSize = true;
             this.lblTopStripRight.Font = new System.Drawing.Font("Segoe UI", 8.5F);
             this.lblTopStripRight.ForeColor = System.Drawing.Color.FromArgb(220, 231, 241);
-            this.lblTopStripRight.Location = new System.Drawing.Point(980, 6);
+            this.lblTopStripRight.Location = new System.Drawing.Point(960, 6);
             this.lblTopStripRight.Name = "lblTopStripRight";
-            this.lblTopStripRight.Size = new System.Drawing.Size(250, 15);
+            this.lblTopStripRight.Size = new System.Drawing.Size(270, 15);
             this.lblTopStripRight.TabIndex = 1;
-            this.lblTopStripRight.Text = "Hỗ trợ bạn đọc · BTL Lập trình trực quan";
+            this.lblTopStripRight.Text = "Hotline: 1900 8888  |  Giờ mở cửa: 08:00 - 22:00";
 
             // pnlSidebar
             this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
@@ -107,19 +107,19 @@ namespace BTL.GUI
 
             // lblLogo
             this.lblLogo.AutoSize = true;
-            this.lblLogo.Font = new System.Drawing.Font("Segoe UI", 12.5F, System.Drawing.FontStyle.Bold);
+            this.lblLogo.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblLogo.ForeColor = System.Drawing.Color.FromArgb(245, 213, 42);
-            this.lblLogo.Location = new System.Drawing.Point(14, 16);
+            this.lblLogo.Location = new System.Drawing.Point(16, 15);
             this.lblLogo.Name = "lblLogo";
-            this.lblLogo.Size = new System.Drawing.Size(185, 23);
+            this.lblLogo.Size = new System.Drawing.Size(126, 25);
             this.lblLogo.TabIndex = 0;
-            this.lblLogo.Text = "◉ UTC BOOKSTORE";
+            this.lblLogo.Text = "BOOKSTORE";
 
             // lblSubLogo
             this.lblSubLogo.AutoSize = true;
-            this.lblSubLogo.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.lblSubLogo.Font = new System.Drawing.Font("Segoe UI", 7.8F);
             this.lblSubLogo.ForeColor = System.Drawing.Color.FromArgb(220, 231, 241);
-            this.lblSubLogo.Location = new System.Drawing.Point(16, 43);
+            this.lblSubLogo.Location = new System.Drawing.Point(17, 44);
             this.lblSubLogo.Name = "lblSubLogo";
             this.lblSubLogo.Size = new System.Drawing.Size(170, 13);
             this.lblSubLogo.TabIndex = 1;
@@ -137,9 +137,9 @@ namespace BTL.GUI
             this.pnlNavButtons.Controls.Add(this.btnNavSach);
             this.pnlNavButtons.Controls.Add(this.btnNavDashboard);
             this.pnlNavButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlNavButtons.Location = new System.Drawing.Point(0, 80);
+            this.pnlNavButtons.Location = new System.Drawing.Point(0, 78);
             this.pnlNavButtons.Name = "pnlNavButtons";
-            this.pnlNavButtons.Size = new System.Drawing.Size(235, 570);
+            this.pnlNavButtons.Size = new System.Drawing.Size(235, 544);
             this.pnlNavButtons.TabIndex = 1;
 
             // Nav buttons styling helper
@@ -153,20 +153,20 @@ namespace BTL.GUI
                 btn.ForeColor = System.Drawing.Color.FromArgb(245, 248, 252);
                 btn.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular);
                 btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                btn.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
+                btn.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
                 btn.Text = text;
                 btn.Cursor = System.Windows.Forms.Cursors.Hand;
             }
 
-            StyleNavBtn(this.btnNavBaoCao, "📊  Báo Cáo & Thống Kê", 8);
-            StyleNavBtn(this.btnNavTimKiem, "🔍  Tra Cứu / Lọc", 7);
-            StyleNavBtn(this.btnNavDanhMuc, "📑  Danh Mục Khác", 6);
-            StyleNavBtn(this.btnNavNhanVien, "👔  Quản Lý Nhân Viên", 5);
-            StyleNavBtn(this.btnNavKhachHang, "👥  Quản Lý Khách Hàng", 4);
-            StyleNavBtn(this.btnNavTra, "🔄  Nhận Trả Sách", 3);
-            StyleNavBtn(this.btnNavThue, "📝  Lập Phiếu Thuê", 2);
-            StyleNavBtn(this.btnNavSach, "📚  Quản Lý Sách", 1);
-            StyleNavBtn(this.btnNavDashboard, "🏠  Tổng Quan", 0);
+            StyleNavBtn(this.btnNavBaoCao, "Báo Cáo & Thống Kê", 8);
+            StyleNavBtn(this.btnNavTimKiem, "Tra Cứu & Tìm Kiếm", 7);
+            StyleNavBtn(this.btnNavDanhMuc, "Danh Mục Phụ Trợ", 6);
+            StyleNavBtn(this.btnNavNhanVien, "Quản Lý Nhân Viên", 5);
+            StyleNavBtn(this.btnNavKhachHang, "Quản Lý Khách Hàng", 4);
+            StyleNavBtn(this.btnNavTra, "Nhận Trả Sách", 3);
+            StyleNavBtn(this.btnNavThue, "Lập Phiếu Thuê", 2);
+            StyleNavBtn(this.btnNavSach, "Quản Lý Kho Sách", 1);
+            StyleNavBtn(this.btnNavDashboard, "Tổng Quan Hệ Thống", 0);
 
             // Re-order by controls dock top (inverse order in code)
             this.pnlNavButtons.Controls.SetChildIndex(this.btnNavDashboard, 0);
@@ -197,7 +197,7 @@ namespace BTL.GUI
             this.lblCurrentUser.Name = "lblCurrentUser";
             this.lblCurrentUser.Size = new System.Drawing.Size(122, 15);
             this.lblCurrentUser.TabIndex = 0;
-            this.lblCurrentUser.Text = "👤 NV: Nguyễn Văn Quản Lý";
+            this.lblCurrentUser.Text = "NV: Nguyễn Văn Quản Lý";
 
             // btnDangXuat
             this.btnDangXuat.BackColor = System.Drawing.Color.FromArgb(8, 127, 181);
@@ -277,7 +277,7 @@ namespace BTL.GUI
             this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Hệ thống Quản lý Cửa hàng Cho thuê Sách truyện - Trường Đại học Giao thông Vận tải (UTC)";
+            this.Text = "Hệ thống Quản lý Cửa hàng Cho thuê Sách truyện - BookStore Pro";
 
             this.pnlTopStrip.ResumeLayout(false);
             this.pnlTopStrip.PerformLayout();

@@ -47,7 +47,7 @@ namespace BTL.GUI
                 if (colCount == 0) colCount = 1;
 
                 // Tiêu đề đơn vị
-                ws.Cell(1, 1).Value = "TRƯỜNG ĐẠI HỌC GIAO THÔNG VẬN TẢI - KHOA CÔNG NGHỆ THÔNG TIN";
+                ws.Cell(1, 1).Value = "CỬA HÀNG CHO THUÊ SÁCH TRUYỆN BOOKSTORE";
                 ws.Range(1, 1, 1, colCount).Merge();
                 ws.Cell(1, 1).Style.Font.SetBold().Font.SetFontSize(10).Font.SetFontColor(XLColor.FromHtml("#607B99"));
 
@@ -58,7 +58,7 @@ namespace BTL.GUI
                 ws.Cell(2, 1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
 
                 // Thời gian xuất
-                ws.Cell(3, 1).Value = $"Thời gian xuất báo cáo: {DateTime.Now:dd/MM/yyyy HH:mm:ss}  |  Người lập: {SessionContext.CurrentNhanVien?.TenNV ?? "Thủ thư"}";
+                ws.Cell(3, 1).Value = $"Thời gian xuất báo cáo: {DateTime.Now:dd/MM/yyyy HH:mm:ss}  |  Người lập: {SessionContext.CurrentNhanVien?.TenNV ?? "Nhân viên thu ngân"}";
                 ws.Range(3, 1, 3, colCount).Merge();
                 ws.Cell(3, 1).Style.Font.SetItalic().Font.SetFontSize(9).Font.SetFontColor(XLColor.FromHtml("#607B99"));
                 ws.Cell(3, 1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);

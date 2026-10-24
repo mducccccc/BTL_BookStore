@@ -58,7 +58,7 @@ namespace BTL.GUI
                 };
             }
 
-            lblCurrentUser.Text = $"👤 NV: {SessionContext.CurrentNhanVien.TenNV}";
+            lblCurrentUser.Text = $"NV: {SessionContext.CurrentNhanVien.TenNV}";
             lblCaLam.Text = $"Ca trực: {SessionContext.CurrentCaLam}";
         }
 
@@ -77,8 +77,8 @@ namespace BTL.GUI
             _activeNavButton.ForeColor = UITheme.Yellow;
             _activeNavButton.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
 
-            // Cập nhật tiêu đề module (Breadcrumb phong cách UTC Rmd)
-            lblCurrentModule.Text = $"UTC  /  QUẢN TRỊ  /  {title}";
+            // Cập nhật tiêu đề module
+            lblCurrentModule.Text = $"BOOKSTORE  /  QUẢN LÝ  /  {title}";
 
             // Chuyển UserControl
             pnlContainer.SuspendLayout();

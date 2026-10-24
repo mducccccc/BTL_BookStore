@@ -117,8 +117,8 @@ namespace BTL.GUI
             var lblDiaChi = new Label { Text = "Địa chỉ:", Location = new Point(310, 100), AutoSize = true, ForeColor = Color.FromArgb(71, 85, 105) };
             txtDiaChi = new TextBox { Location = new Point(380, 96), Width = 430 };
 
-            // Line 4: Buttons (Chuẩn hóa màu UTC)
-            btnThem = CreateButton("+ Thêm mới", UITheme.Blue, 25, 150);
+            // Line 4: Buttons
+            btnThem = CreateButton("Thêm mới", UITheme.Blue, 25, 150);
             btnSua = CreateButton("Cập nhật", UITheme.Navy, 145, 150);
             btnXoa = CreateButton("Xóa", Color.FromArgb(220, 38, 38), 265, 150);
             btnLamMoi = CreateButton("Làm mới", UITheme.Muted, 385, 150);

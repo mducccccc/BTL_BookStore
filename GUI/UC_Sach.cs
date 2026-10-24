@@ -192,15 +192,15 @@ namespace BTL.GUI
             };
             btnXoaAnh.Click += (s, e) => { txtAnh.Clear(); picAnh.Image = null; };
 
-            // ===== HÀNG DƯỚI: NÚT THAO TÁC & TÌM KIẾM (CHUẨN HÓA UI UTC) =====
-            btnThem = CreateButton("+ Thêm mới", UITheme.Blue, 20, 225);
+            // ===== HÀNG DƯỚI: NÚT THAO TÁC & TÌM KIẾM =====
+            btnThem = CreateButton("Thêm mới", UITheme.Blue, 20, 225);
             btnSua = CreateButton("Cập nhật", UITheme.Navy, 140, 225);
             btnXoa = CreateButton("Xóa sách", Color.FromArgb(220, 38, 38), 260, 225);
             btnLamMoi = CreateButton("Làm mới", UITheme.Muted, 380, 225);
 
             var btnXuatExcel = new Button
             {
-                Text = "📥 Xuất Excel",
+                Text = "Xuất Excel",
                 Location = new Point(500, 225),
                 Size = new Size(105, 32),
                 FlatStyle = FlatStyle.Flat,

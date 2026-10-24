@@ -44,13 +44,13 @@ namespace BTL.GUI
             int cardGap = 15;
 
             // Card 1: Tổng đầu sách (Navy)
-            card1 = CreateMetricCard("Tổng đầu sách", "0", "📚", UITheme.Navy, 15 + 0 * (cardWidth + cardGap), out lblTotalSach);
+            card1 = CreateMetricCard("Tổng đầu sách", "0", UITheme.Navy, 15 + 0 * (cardWidth + cardGap), out lblTotalSach);
             // Card 2: Sách đang cho thuê (Blue)
-            card2 = CreateMetricCard("Sách đang thuê", "0", "⏳", UITheme.Blue, 15 + 1 * (cardWidth + cardGap), out lblDangThue);
+            card2 = CreateMetricCard("Sách đang thuê", "0", UITheme.Blue, 15 + 1 * (cardWidth + cardGap), out lblDangThue);
             // Card 3: Khách hàng (Gold)
-            card3 = CreateMetricCard("Khách hàng", "0", "👥", Color.FromArgb(202, 138, 4), 15 + 2 * (cardWidth + cardGap), out lblTotalKH);
+            card3 = CreateMetricCard("Khách hàng", "0", Color.FromArgb(202, 138, 4), 15 + 2 * (cardWidth + cardGap), out lblTotalKH);
             // Card 4: Lượt trả sách (Green)
-            card4 = CreateMetricCard("Phiếu trả đã lập", "0", "🔄", Color.FromArgb(16, 185, 129), 15 + 3 * (cardWidth + cardGap), out lblTotalTra);
+            card4 = CreateMetricCard("Phiếu trả đã lập", "0", Color.FromArgb(16, 185, 129), 15 + 3 * (cardWidth + cardGap), out lblTotalTra);
 
             pnlCards.Controls.AddRange(new Control[] { card1, card2, card3, card4 });
 
@@ -64,7 +64,7 @@ namespace BTL.GUI
 
             lblRecentTitle = new Label
             {
-                Text = "📌 Danh sách sách đang được thuê chưa trả (Cập nhật thời gian thực)",
+                Text = "Danh sách sách đang được thuê chưa trả (Cập nhật thời gian thực)",
                 Font = new Font("Segoe UI", 11F, FontStyle.Bold),
                 ForeColor = UITheme.Navy,
                 Dock = DockStyle.Top,
@@ -92,7 +92,7 @@ namespace BTL.GUI
             this.Controls.Add(pnlCards);
         }
 
-        private Panel CreateMetricCard(string title, string value, string icon, Color accentColor, int left, out Label lblVal)
+        private Panel CreateMetricCard(string title, string value, Color accentColor, int left, out Label lblVal)
         {
             var pnl = new Panel
             {
@@ -116,8 +116,8 @@ namespace BTL.GUI
                 Text = title,
                 ForeColor = Color.FromArgb(100, 116, 139),
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Regular),
-                Left = 18,
-                Top = 14,
+                Left = 20,
+                Top = 16,
                 AutoSize = true
             };
 
@@ -125,22 +125,13 @@ namespace BTL.GUI
             {
                 Text = value,
                 ForeColor = Color.FromArgb(15, 23, 42),
-                Font = new Font("Segoe UI", 18F, FontStyle.Bold),
-                Left = 18,
-                Top = 38,
+                Font = new Font("Segoe UI", 20F, FontStyle.Bold),
+                Left = 20,
+                Top = 42,
                 AutoSize = true
             };
 
-            var lblIcon = new Label
-            {
-                Text = icon,
-                Font = new Font("Segoe UI", 22F),
-                Left = 175,
-                Top = 22,
-                AutoSize = true
-            };
-
-            pnl.Controls.AddRange(new Control[] { stripe, lblTitle, lblVal, lblIcon });
+            pnl.Controls.AddRange(new Control[] { stripe, lblTitle, lblVal });
             return pnl;
         }
 

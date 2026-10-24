@@ -107,7 +107,7 @@ namespace BTL.GUI
 
             var btnXuatExcel1 = new Button
             {
-                Text = "📥 Xuất Excel",
+                Text = "Xuất Excel",
                 Location = new Point(160, 45),
                 Size = new Size(110, 34),
                 FlatStyle = FlatStyle.Flat,
@@ -259,7 +259,7 @@ namespace BTL.GUI
 
             var btnXuatExcel2 = new Button
             {
-                Text = "📥 Xuất Excel",
+                Text = "Xuất Excel",
                 Location = new Point(530, 21),
                 Size = new Size(110, 32),
                 FlatStyle = FlatStyle.Flat,
@@ -497,7 +497,7 @@ namespace BTL.GUI
 
             var btnXuatExcel3 = new Button
             {
-                Text = "📥 Xuất Excel",
+                Text = "Xuất Excel",
                 Location = new Point(700, 40),
                 Size = new Size(110, 32),
                 FlatStyle = FlatStyle.Flat,
@@ -604,25 +604,25 @@ namespace BTL.GUI
             {
                 if (e.Value.ToString() == "1")
                 {
-                    e.Value = "🥇 TOP 1";
+                    e.Value = "TOP 1";
                     e.CellStyle!.ForeColor = Color.FromArgb(180, 83, 9);
                     e.CellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
                 }
                 else if (e.Value.ToString() == "2")
                 {
-                    e.Value = "🥈 TOP 2";
+                    e.Value = "TOP 2";
                     e.CellStyle!.ForeColor = Color.FromArgb(71, 85, 105);
                     e.CellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
                 }
                 else if (e.Value.ToString() == "3")
                 {
-                    e.Value = "🥉 TOP 3";
+                    e.Value = "TOP 3";
                     e.CellStyle!.ForeColor = Color.FromArgb(180, 83, 9);
                     e.CellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
                 }
                 else
                 {
-                    e.Value = $"  TOP {e.Value}";
+                    e.Value = $"TOP {e.Value}";
                 }
             }
         }

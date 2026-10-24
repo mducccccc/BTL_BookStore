@@ -73,7 +73,7 @@ namespace BTL.GUI
         #region 1. TAB VI PHẠM & TIỀN PHẠT
         private TabPage BuildTabViPham()
         {
-            var tab = new TabPage("⚠️ Vi Phạm & Tiền Phạt") { BackColor = Color.White };
+            var tab = new TabPage("Vi Phạm & Tiền Phạt") { BackColor = Color.White };
 
             var pnlTop = new Panel { Dock = DockStyle.Top, Height = 130, Padding = new Padding(20) };
             var lblMa = new Label { Text = "Mã vi phạm:", Location = new Point(20, 20), AutoSize = true };
@@ -85,10 +85,10 @@ namespace BTL.GUI
             var lblTien = new Label { Text = "Tiền phạt:", Location = new Point(20, 60), AutoSize = true };
             numTienPhat = new NumericUpDown { Location = new Point(120, 56), Width = 150, Maximum = 10000000, Increment = 5000, ThousandsSeparator = true };
 
-            var btnThem = CreateSmallBtn("➕ Thêm", UITheme.Blue, 300, 54);
-            var btnSua = CreateSmallBtn("✏️ Sửa", UITheme.Navy, 390, 54);
-            var btnXoa = CreateSmallBtn("🗑️ Xóa", Color.FromArgb(220, 38, 38), 480, 54);
-            var btnMoi = CreateSmallBtn("🔄 Mới", UITheme.Muted, 570, 54);
+            var btnThem = CreateSmallBtn("Thêm", UITheme.Blue, 300, 54);
+            var btnSua = CreateSmallBtn("Sửa", UITheme.Navy, 390, 54);
+            var btnXoa = CreateSmallBtn("Xóa", Color.FromArgb(220, 38, 38), 480, 54);
+            var btnMoi = CreateSmallBtn("Làm mới", UITheme.Muted, 570, 54);
 
             pnlTop.Controls.AddRange(new Control[] { lblMa, txtMaVP, lblTen, txtTenVP, lblTien, numTienPhat, btnThem, btnSua, btnXoa, btnMoi });
 
@@ -143,7 +143,7 @@ namespace BTL.GUI
         #region 2. TAB TÁC GIẢ
         private TabPage BuildTabTacGia()
         {
-            var tab = new TabPage("✍️ Tác Giả") { BackColor = Color.White };
+            var tab = new TabPage("Tác Giả") { BackColor = Color.White };
 
             var pnlTop = new Panel { Dock = DockStyle.Top, Height = 140, Padding = new Padding(20) };
             var lblMa = new Label { Text = "Mã TG:", Location = new Point(20, 20), AutoSize = true };
@@ -163,10 +163,10 @@ namespace BTL.GUI
             var lblDC = new Label { Text = "Địa chỉ:", Location = new Point(220, 60), AutoSize = true };
             txtDiaChiTG = new TextBox { Location = new Point(290, 56), Width = 380 };
 
-            var btnThem = CreateSmallBtn("➕ Thêm", Color.FromArgb(16, 185, 129), 20, 98);
-            var btnSua = CreateSmallBtn("✏️ Sửa", Color.FromArgb(37, 99, 235), 110, 98);
-            var btnXoa = CreateSmallBtn("🗑️ Xóa", Color.FromArgb(239, 68, 68), 200, 98);
-            var btnMoi = CreateSmallBtn("🔄 Mới", Color.FromArgb(100, 116, 139), 290, 98);
+            var btnThem = CreateSmallBtn("Thêm", Color.FromArgb(16, 185, 129), 20, 98);
+            var btnSua = CreateSmallBtn("Sửa", Color.FromArgb(37, 99, 235), 110, 98);
+            var btnXoa = CreateSmallBtn("Xóa", Color.FromArgb(239, 68, 68), 200, 98);
+            var btnMoi = CreateSmallBtn("Làm mới", Color.FromArgb(100, 116, 139), 290, 98);
 
             pnlTop.Controls.AddRange(new Control[] { lblMa, txtMaTG, lblTen, txtTenTG, lblGT, cboGioiTinhTG, lblNS, dtpNgaySinhTG, lblDC, txtDiaChiTG, btnThem, btnSua, btnXoa, btnMoi });
 
@@ -227,7 +227,7 @@ namespace BTL.GUI
         #region 3. TAB NHÀ XUẤT BẢN
         private TabPage BuildTabNXB()
         {
-            var tab = new TabPage("🏢 Nhà Xuất Bản") { BackColor = Color.White };
+            var tab = new TabPage("Nhà Xuất Bản") { BackColor = Color.White };
 
             var pnlTop = new Panel { Dock = DockStyle.Top, Height = 130, Padding = new Padding(20) };
             var lblMa = new Label { Text = "Mã NXB:", Location = new Point(20, 20), AutoSize = true };
@@ -242,9 +242,9 @@ namespace BTL.GUI
             var lblDC = new Label { Text = "Địa chỉ:", Location = new Point(20, 60), AutoSize = true };
             txtDiaChiNXB = new TextBox { Location = new Point(90, 56), Width = 450 };
 
-            var btnThem = CreateSmallBtn("➕ Thêm", Color.FromArgb(16, 185, 129), 560, 54);
-            var btnSua = CreateSmallBtn("✏️ Sửa", Color.FromArgb(37, 99, 235), 645, 54);
-            var btnXoa = CreateSmallBtn("🗑️ Xóa", Color.FromArgb(239, 68, 68), 730, 54);
+            var btnThem = CreateSmallBtn("Thêm", Color.FromArgb(16, 185, 129), 560, 54);
+            var btnSua = CreateSmallBtn("Sửa", Color.FromArgb(37, 99, 235), 645, 54);
+            var btnXoa = CreateSmallBtn("Xóa", Color.FromArgb(239, 68, 68), 730, 54);
 
             pnlTop.Controls.AddRange(new Control[] { lblMa, txtMaNXB, lblTen, txtTenNXB, lblPhone, txtPhoneNXB, lblDC, txtDiaChiNXB, btnThem, btnSua, btnXoa });
 
@@ -285,7 +285,7 @@ namespace BTL.GUI
         #region 4. TAB CA LÀM VIỆC
         private TabPage BuildTabCaLam()
         {
-            var tab = new TabPage("⏰ Ca Làm Việc") { BackColor = Color.White };
+            var tab = new TabPage("Ca Làm Việc") { BackColor = Color.White };
 
             var pnlTop = new Panel { Dock = DockStyle.Top, Height = 100, Padding = new Padding(20) };
             var lblMa = new Label { Text = "Mã ca:", Location = new Point(20, 20), AutoSize = true };
@@ -294,9 +294,9 @@ namespace BTL.GUI
             var lblTen = new Label { Text = "Tên ca:", Location = new Point(220, 20), AutoSize = true };
             txtTenCa = new TextBox { Location = new Point(290, 16), Width = 250 };
 
-            var btnThem = CreateSmallBtn("➕ Thêm", Color.FromArgb(16, 185, 129), 560, 14);
-            var btnSua = CreateSmallBtn("✏️ Sửa", Color.FromArgb(37, 99, 235), 645, 14);
-            var btnXoa = CreateSmallBtn("🗑️ Xóa", Color.FromArgb(239, 68, 68), 730, 14);
+            var btnThem = CreateSmallBtn("Thêm", Color.FromArgb(16, 185, 129), 560, 14);
+            var btnSua = CreateSmallBtn("Sửa", Color.FromArgb(37, 99, 235), 645, 14);
+            var btnXoa = CreateSmallBtn("Xóa", Color.FromArgb(239, 68, 68), 730, 14);
 
             pnlTop.Controls.AddRange(new Control[] { lblMa, txtMaCa, lblTen, txtTenCa, btnThem, btnSua, btnXoa });
 
