@@ -13,6 +13,12 @@ namespace BTL.GUI
         public FormMain()
         {
             InitializeComponent();
+            this.Load += FormMain_Load;
+        }
+
+        private void FormMain_Load(object? sender, EventArgs e)
+        {
+            if (DesignMode) return;
             SetupEvents();
             InitSessionData();
             // Mở mặc định trang Tổng quan (Dashboard)
@@ -64,34 +70,42 @@ namespace BTL.GUI
 
         private void SwitchView(Button navButton, UserControl viewControl, string title)
         {
-            // Đổi giao diện nút bấm
-            if (_activeNavButton != null)
+            try
             {
-                _activeNavButton.BackColor = UITheme.Navy;
-                _activeNavButton.ForeColor = Color.FromArgb(245, 248, 252);
-                _activeNavButton.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
+                // Đổi giao diện nút bấm
+                if (_activeNavButton != null)
+                {
+                    _activeNavButton.BackColor = UITheme.Navy;
+                    _activeNavButton.ForeColor = Color.FromArgb(245, 248, 252);
+                    _activeNavButton.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
+                }
+
+                _activeNavButton = navButton;
+                _activeNavButton.BackColor = UITheme.NavActiveBg;
+                _activeNavButton.ForeColor = UITheme.Yellow;
+                _activeNavButton.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+
+                // Cập nhật tiêu đề module
+                lblCurrentModule.Text = $"BOOKSTORE  /  QUẢN LÝ  /  {title}";
+
+                // Chuyển UserControl
+                pnlContainer.SuspendLayout();
+                if (_currentView != null)
+                {
+                    pnlContainer.Controls.Remove(_currentView);
+                    _currentView.Dispose();
+                }
+
+                _currentView = viewControl;
+                _currentView.Dock = DockStyle.Fill;
+                pnlContainer.Controls.Add(_currentView);
+                pnlContainer.ResumeLayout();
             }
-
-            _activeNavButton = navButton;
-            _activeNavButton.BackColor = UITheme.NavActiveBg;
-            _activeNavButton.ForeColor = UITheme.Yellow;
-            _activeNavButton.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-
-            // Cập nhật tiêu đề module
-            lblCurrentModule.Text = $"BOOKSTORE  /  QUẢN LÝ  /  {title}";
-
-            // Chuyển UserControl
-            pnlContainer.SuspendLayout();
-            if (_currentView != null)
+            catch (Exception ex)
             {
-                pnlContainer.Controls.Remove(_currentView);
-                _currentView.Dispose();
+                pnlContainer.ResumeLayout();
+                MessageBox.Show($"Lỗi khi mở giao diện {title}:\n{ex.Message}", "Lỗi tải module", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            _currentView = viewControl;
-            _currentView.Dock = DockStyle.Fill;
-            pnlContainer.Controls.Add(_currentView);
-            pnlContainer.ResumeLayout();
         }
 
         private void BtnDangXuat_Click(object? sender, EventArgs e)

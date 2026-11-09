@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using System.Data;
 using Microsoft.Data.SqlClient;
 
@@ -6,10 +7,29 @@ namespace BTL.DAL
 {
     public static class DatabaseHelper
     {
-        // Chuỗi kết nối mặc định (Có thể tùy chỉnh hoặc nạp từ file cấu hình)
-        // Hỗ trợ TrustServerCertificate=True để tránh lỗi chứng chỉ SSL trên máy phát triển
-        private static string _connectionString =
-            @"Server=.\SQLEXPRESS;Database=QLChoThueSach;Trusted_Connection=True;TrustServerCertificate=True;";
+        private const string ConnectionStringName = "QLChoThueSach";
+        private static string _connectionString;
+
+        static DatabaseHelper()
+        {
+            try
+            {
+                var connStr = ConfigurationManager.ConnectionStrings[ConnectionStringName]?.ConnectionString;
+                if (!string.IsNullOrWhiteSpace(connStr))
+                {
+                    _connectionString = connStr;
+                }
+                else
+                {
+                    // Fallback mặc định nếu chưa cấu hình trong App.config
+                    _connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=QLChoThueSach;Integrated Security=True;TrustServerCertificate=True;";
+                }
+            }
+            catch
+            {
+                _connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=QLChoThueSach;Integrated Security=True;TrustServerCertificate=True;";
+            }
+        }
 
         public static string ConnectionString
         {

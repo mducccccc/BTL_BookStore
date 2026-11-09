@@ -96,7 +96,11 @@ namespace BTL.GUI
 
                         if (val != null && val != DBNull.Value)
                         {
-                            if (decimal.TryParse(val.ToString(), out decimal numVal) && dgv.Columns[i].HeaderText.Contains("Giá", StringComparison.OrdinalIgnoreCase) || dgv.Columns[i].HeaderText.Contains("Tiền", StringComparison.OrdinalIgnoreCase) || dgv.Columns[i].HeaderText.Contains("Lương", StringComparison.OrdinalIgnoreCase) || dgv.Columns[i].HeaderText.Contains("Doanh Thu", StringComparison.OrdinalIgnoreCase))
+                            if (decimal.TryParse(val.ToString(), out decimal numVal) && 
+                                (dgv.Columns[i].HeaderText.Contains("Giá", StringComparison.OrdinalIgnoreCase) || 
+                                 dgv.Columns[i].HeaderText.Contains("Tiền", StringComparison.OrdinalIgnoreCase) || 
+                                 dgv.Columns[i].HeaderText.Contains("Lương", StringComparison.OrdinalIgnoreCase) || 
+                                 dgv.Columns[i].HeaderText.Contains("Doanh Thu", StringComparison.OrdinalIgnoreCase)))
                             {
                                 cell.Value = numVal;
                                 cell.Style.NumberFormat.Format = "#,##0";

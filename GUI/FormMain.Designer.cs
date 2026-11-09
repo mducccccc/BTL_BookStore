@@ -53,7 +53,9 @@ namespace BTL.GUI
             this.pnlTopBar.SuspendLayout();
             this.SuspendLayout();
 
+            // 
             // pnlTopStrip
+            // 
             this.pnlTopStrip.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
             this.pnlTopStrip.Controls.Add(this.lblTopStripRight);
             this.pnlTopStrip.Controls.Add(this.lblTopStripLeft);
@@ -63,7 +65,9 @@ namespace BTL.GUI
             this.pnlTopStrip.Size = new System.Drawing.Size(1244, 28);
             this.pnlTopStrip.TabIndex = 3;
 
+            // 
             // lblTopStripLeft
+            // 
             this.lblTopStripLeft.AutoSize = true;
             this.lblTopStripLeft.Font = new System.Drawing.Font("Segoe UI", 8.5F);
             this.lblTopStripLeft.ForeColor = System.Drawing.Color.White;
@@ -73,7 +77,9 @@ namespace BTL.GUI
             this.lblTopStripLeft.TabIndex = 0;
             this.lblTopStripLeft.Text = "HỆ THỐNG QUẢN LÝ CỬA HÀNG CHO THUÊ SÁCH TRUYỆN - BOOKSTORE PRO";
 
+            // 
             // lblTopStripRight
+            // 
             this.lblTopStripRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTopStripRight.AutoSize = true;
             this.lblTopStripRight.Font = new System.Drawing.Font("Segoe UI", 8.5F);
@@ -84,7 +90,9 @@ namespace BTL.GUI
             this.lblTopStripRight.TabIndex = 1;
             this.lblTopStripRight.Text = "Hotline: 1900 8888  |  Giờ mở cửa: 08:00 - 22:00";
 
+            // 
             // pnlSidebar
+            // 
             this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
             this.pnlSidebar.Controls.Add(this.pnlNavButtons);
             this.pnlSidebar.Controls.Add(this.pnlUserFooter);
@@ -95,7 +103,9 @@ namespace BTL.GUI
             this.pnlSidebar.Size = new System.Drawing.Size(235, 692);
             this.pnlSidebar.TabIndex = 0;
 
+            // 
             // pnlLogo
+            // 
             this.pnlLogo.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
             this.pnlLogo.Controls.Add(this.lblSubLogo);
             this.pnlLogo.Controls.Add(this.lblLogo);
@@ -105,7 +115,9 @@ namespace BTL.GUI
             this.pnlLogo.Size = new System.Drawing.Size(235, 78);
             this.pnlLogo.TabIndex = 0;
 
+            // 
             // lblLogo
+            // 
             this.lblLogo.AutoSize = true;
             this.lblLogo.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblLogo.ForeColor = System.Drawing.Color.FromArgb(245, 213, 42);
@@ -115,7 +127,9 @@ namespace BTL.GUI
             this.lblLogo.TabIndex = 0;
             this.lblLogo.Text = "BOOKSTORE";
 
+            // 
             // lblSubLogo
+            // 
             this.lblSubLogo.AutoSize = true;
             this.lblSubLogo.Font = new System.Drawing.Font("Segoe UI", 7.8F);
             this.lblSubLogo.ForeColor = System.Drawing.Color.FromArgb(220, 231, 241);
@@ -125,7 +139,9 @@ namespace BTL.GUI
             this.lblSubLogo.TabIndex = 1;
             this.lblSubLogo.Text = "HỆ THỐNG THUÊ SÁCH TRUYỆN";
 
+            // 
             // pnlNavButtons
+            // 
             this.pnlNavButtons.AutoScroll = true;
             this.pnlNavButtons.Controls.Add(this.btnNavBaoCao);
             this.pnlNavButtons.Controls.Add(this.btnNavTimKiem);
@@ -142,44 +158,180 @@ namespace BTL.GUI
             this.pnlNavButtons.Size = new System.Drawing.Size(235, 544);
             this.pnlNavButtons.TabIndex = 1;
 
-            // Nav buttons styling helper
-            void StyleNavBtn(System.Windows.Forms.Button btn, string text, int top)
-            {
-                btn.Dock = System.Windows.Forms.DockStyle.Top;
-                btn.Height = 46;
-                btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                btn.FlatAppearance.BorderSize = 0;
-                btn.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
-                btn.ForeColor = System.Drawing.Color.FromArgb(245, 248, 252);
-                btn.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular);
-                btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                btn.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-                btn.Text = text;
-                btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            }
+            // 
+            // btnNavDashboard
+            // 
+            this.btnNavDashboard.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
+            this.btnNavDashboard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNavDashboard.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNavDashboard.FlatAppearance.BorderSize = 0;
+            this.btnNavDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNavDashboard.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnNavDashboard.ForeColor = System.Drawing.Color.FromArgb(245, 248, 252);
+            this.btnNavDashboard.Location = new System.Drawing.Point(0, 0);
+            this.btnNavDashboard.Name = "btnNavDashboard";
+            this.btnNavDashboard.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnNavDashboard.Size = new System.Drawing.Size(235, 46);
+            this.btnNavDashboard.TabIndex = 0;
+            this.btnNavDashboard.Text = "Tổng Quan Hệ Thống";
+            this.btnNavDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNavDashboard.UseVisualStyleBackColor = false;
 
-            StyleNavBtn(this.btnNavBaoCao, "Báo Cáo & Thống Kê", 8);
-            StyleNavBtn(this.btnNavTimKiem, "Tra Cứu & Tìm Kiếm", 7);
-            StyleNavBtn(this.btnNavDanhMuc, "Danh Mục Phụ Trợ", 6);
-            StyleNavBtn(this.btnNavNhanVien, "Quản Lý Nhân Viên", 5);
-            StyleNavBtn(this.btnNavKhachHang, "Quản Lý Khách Hàng", 4);
-            StyleNavBtn(this.btnNavTra, "Nhận Trả Sách", 3);
-            StyleNavBtn(this.btnNavThue, "Lập Phiếu Thuê", 2);
-            StyleNavBtn(this.btnNavSach, "Quản Lý Kho Sách", 1);
-            StyleNavBtn(this.btnNavDashboard, "Tổng Quan Hệ Thống", 0);
+            // 
+            // btnNavSach
+            // 
+            this.btnNavSach.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
+            this.btnNavSach.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNavSach.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNavSach.FlatAppearance.BorderSize = 0;
+            this.btnNavSach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNavSach.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnNavSach.ForeColor = System.Drawing.Color.FromArgb(245, 248, 252);
+            this.btnNavSach.Location = new System.Drawing.Point(0, 46);
+            this.btnNavSach.Name = "btnNavSach";
+            this.btnNavSach.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnNavSach.Size = new System.Drawing.Size(235, 46);
+            this.btnNavSach.TabIndex = 1;
+            this.btnNavSach.Text = "Quản Lý Kho Sách";
+            this.btnNavSach.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNavSach.UseVisualStyleBackColor = false;
 
-            // Re-order by controls dock top (inverse order in code)
-            this.pnlNavButtons.Controls.SetChildIndex(this.btnNavDashboard, 0);
-            this.pnlNavButtons.Controls.SetChildIndex(this.btnNavSach, 1);
-            this.pnlNavButtons.Controls.SetChildIndex(this.btnNavThue, 2);
-            this.pnlNavButtons.Controls.SetChildIndex(this.btnNavTra, 3);
-            this.pnlNavButtons.Controls.SetChildIndex(this.btnNavKhachHang, 4);
-            this.pnlNavButtons.Controls.SetChildIndex(this.btnNavNhanVien, 5);
-            this.pnlNavButtons.Controls.SetChildIndex(this.btnNavDanhMuc, 6);
-            this.pnlNavButtons.Controls.SetChildIndex(this.btnNavTimKiem, 7);
-            this.pnlNavButtons.Controls.SetChildIndex(this.btnNavBaoCao, 8);
+            // 
+            // btnNavThue
+            // 
+            this.btnNavThue.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
+            this.btnNavThue.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNavThue.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNavThue.FlatAppearance.BorderSize = 0;
+            this.btnNavThue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNavThue.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnNavThue.ForeColor = System.Drawing.Color.FromArgb(245, 248, 252);
+            this.btnNavThue.Location = new System.Drawing.Point(0, 92);
+            this.btnNavThue.Name = "btnNavThue";
+            this.btnNavThue.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnNavThue.Size = new System.Drawing.Size(235, 46);
+            this.btnNavThue.TabIndex = 2;
+            this.btnNavThue.Text = "Lập Phiếu Thuê";
+            this.btnNavThue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNavThue.UseVisualStyleBackColor = false;
 
+            // 
+            // btnNavTra
+            // 
+            this.btnNavTra.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
+            this.btnNavTra.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNavTra.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNavTra.FlatAppearance.BorderSize = 0;
+            this.btnNavTra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNavTra.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnNavTra.ForeColor = System.Drawing.Color.FromArgb(245, 248, 252);
+            this.btnNavTra.Location = new System.Drawing.Point(0, 138);
+            this.btnNavTra.Name = "btnNavTra";
+            this.btnNavTra.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnNavTra.Size = new System.Drawing.Size(235, 46);
+            this.btnNavTra.TabIndex = 3;
+            this.btnNavTra.Text = "Nhận Trả Sách";
+            this.btnNavTra.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNavTra.UseVisualStyleBackColor = false;
+
+            // 
+            // btnNavKhachHang
+            // 
+            this.btnNavKhachHang.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
+            this.btnNavKhachHang.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNavKhachHang.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNavKhachHang.FlatAppearance.BorderSize = 0;
+            this.btnNavKhachHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNavKhachHang.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnNavKhachHang.ForeColor = System.Drawing.Color.FromArgb(245, 248, 252);
+            this.btnNavKhachHang.Location = new System.Drawing.Point(0, 184);
+            this.btnNavKhachHang.Name = "btnNavKhachHang";
+            this.btnNavKhachHang.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnNavKhachHang.Size = new System.Drawing.Size(235, 46);
+            this.btnNavKhachHang.TabIndex = 4;
+            this.btnNavKhachHang.Text = "Quản Lý Khách Hàng";
+            this.btnNavKhachHang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNavKhachHang.UseVisualStyleBackColor = false;
+
+            // 
+            // btnNavNhanVien
+            // 
+            this.btnNavNhanVien.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
+            this.btnNavNhanVien.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNavNhanVien.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNavNhanVien.FlatAppearance.BorderSize = 0;
+            this.btnNavNhanVien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNavNhanVien.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnNavNhanVien.ForeColor = System.Drawing.Color.FromArgb(245, 248, 252);
+            this.btnNavNhanVien.Location = new System.Drawing.Point(0, 230);
+            this.btnNavNhanVien.Name = "btnNavNhanVien";
+            this.btnNavNhanVien.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnNavNhanVien.Size = new System.Drawing.Size(235, 46);
+            this.btnNavNhanVien.TabIndex = 5;
+            this.btnNavNhanVien.Text = "Quản Lý Nhân Viên";
+            this.btnNavNhanVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNavNhanVien.UseVisualStyleBackColor = false;
+
+            // 
+            // btnNavDanhMuc
+            // 
+            this.btnNavDanhMuc.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
+            this.btnNavDanhMuc.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNavDanhMuc.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNavDanhMuc.FlatAppearance.BorderSize = 0;
+            this.btnNavDanhMuc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNavDanhMuc.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnNavDanhMuc.ForeColor = System.Drawing.Color.FromArgb(245, 248, 252);
+            this.btnNavDanhMuc.Location = new System.Drawing.Point(0, 276);
+            this.btnNavDanhMuc.Name = "btnNavDanhMuc";
+            this.btnNavDanhMuc.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnNavDanhMuc.Size = new System.Drawing.Size(235, 46);
+            this.btnNavDanhMuc.TabIndex = 6;
+            this.btnNavDanhMuc.Text = "Danh Mục Phụ Trợ";
+            this.btnNavDanhMuc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNavDanhMuc.UseVisualStyleBackColor = false;
+
+            // 
+            // btnNavTimKiem
+            // 
+            this.btnNavTimKiem.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
+            this.btnNavTimKiem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNavTimKiem.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNavTimKiem.FlatAppearance.BorderSize = 0;
+            this.btnNavTimKiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNavTimKiem.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnNavTimKiem.ForeColor = System.Drawing.Color.FromArgb(245, 248, 252);
+            this.btnNavTimKiem.Location = new System.Drawing.Point(0, 322);
+            this.btnNavTimKiem.Name = "btnNavTimKiem";
+            this.btnNavTimKiem.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnNavTimKiem.Size = new System.Drawing.Size(235, 46);
+            this.btnNavTimKiem.TabIndex = 7;
+            this.btnNavTimKiem.Text = "Tra Cứu & Tìm Kiếm";
+            this.btnNavTimKiem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNavTimKiem.UseVisualStyleBackColor = false;
+
+            // 
+            // btnNavBaoCao
+            // 
+            this.btnNavBaoCao.BackColor = System.Drawing.Color.FromArgb(28, 66, 121);
+            this.btnNavBaoCao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNavBaoCao.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNavBaoCao.FlatAppearance.BorderSize = 0;
+            this.btnNavBaoCao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNavBaoCao.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.btnNavBaoCao.ForeColor = System.Drawing.Color.FromArgb(245, 248, 252);
+            this.btnNavBaoCao.Location = new System.Drawing.Point(0, 368);
+            this.btnNavBaoCao.Name = "btnNavBaoCao";
+            this.btnNavBaoCao.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnNavBaoCao.Size = new System.Drawing.Size(235, 46);
+            this.btnNavBaoCao.TabIndex = 8;
+            this.btnNavBaoCao.Text = "Báo Cáo & Thống Kê";
+            this.btnNavBaoCao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNavBaoCao.UseVisualStyleBackColor = false;
+
+            // 
             // pnlUserFooter
+            // 
             this.pnlUserFooter.BackColor = System.Drawing.Color.FromArgb(22, 53, 98);
             this.pnlUserFooter.Controls.Add(this.btnDangXuat);
             this.pnlUserFooter.Controls.Add(this.lblCurrentUser);
@@ -189,7 +341,9 @@ namespace BTL.GUI
             this.pnlUserFooter.Size = new System.Drawing.Size(235, 70);
             this.pnlUserFooter.TabIndex = 2;
 
+            // 
             // lblCurrentUser
+            // 
             this.lblCurrentUser.AutoSize = true;
             this.lblCurrentUser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.lblCurrentUser.ForeColor = System.Drawing.Color.White;
@@ -199,7 +353,9 @@ namespace BTL.GUI
             this.lblCurrentUser.TabIndex = 0;
             this.lblCurrentUser.Text = "NV: Nguyễn Văn Quản Lý";
 
+            // 
             // btnDangXuat
+            // 
             this.btnDangXuat.BackColor = System.Drawing.Color.FromArgb(8, 127, 181);
             this.btnDangXuat.FlatAppearance.BorderSize = 0;
             this.btnDangXuat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -212,7 +368,9 @@ namespace BTL.GUI
             this.btnDangXuat.Text = "Đổi ca / Thoát";
             this.btnDangXuat.UseVisualStyleBackColor = false;
 
+            // 
             // pnlTopBar
+            // 
             this.pnlTopBar.BackColor = System.Drawing.Color.White;
             this.pnlTopBar.Controls.Add(this.lblCaLam);
             this.pnlTopBar.Controls.Add(this.lblClock);
@@ -223,7 +381,9 @@ namespace BTL.GUI
             this.pnlTopBar.Size = new System.Drawing.Size(1009, 60);
             this.pnlTopBar.TabIndex = 1;
 
+            // 
             // lblCurrentModule
+            // 
             this.lblCurrentModule.AutoSize = true;
             this.lblCurrentModule.Font = new System.Drawing.Font("Segoe UI", 12.5F, System.Drawing.FontStyle.Bold);
             this.lblCurrentModule.ForeColor = System.Drawing.Color.FromArgb(28, 66, 121);
@@ -233,7 +393,9 @@ namespace BTL.GUI
             this.lblCurrentModule.TabIndex = 0;
             this.lblCurrentModule.Text = "TỔNG QUAN HỆ THỐNG";
 
+            // 
             // lblClock
+            // 
             this.lblClock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblClock.AutoSize = true;
             this.lblClock.Font = new System.Drawing.Font("Segoe UI", 9.5F);
@@ -244,20 +406,24 @@ namespace BTL.GUI
             this.lblClock.TabIndex = 1;
             this.lblClock.Text = "24/10/2026 --:--:--";
 
+            // 
             // lblCaLam
+            // 
             this.lblCaLam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCaLam.AutoSize = true;
             this.lblCaLam.BackColor = System.Drawing.Color.FromArgb(234, 245, 252);
             this.lblCaLam.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
             this.lblCaLam.ForeColor = System.Drawing.Color.FromArgb(8, 127, 181);
-            this.lblCaLam.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
             this.lblCaLam.Location = new System.Drawing.Point(620, 17);
             this.lblCaLam.Name = "lblCaLam";
+            this.lblCaLam.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
             this.lblCaLam.Size = new System.Drawing.Size(95, 23);
             this.lblCaLam.TabIndex = 2;
             this.lblCaLam.Text = "Ca 1 (Sáng)";
 
+            // 
             // pnlContainer
+            // 
             this.pnlContainer.BackColor = System.Drawing.Color.FromArgb(244, 249, 252);
             this.pnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContainer.Location = new System.Drawing.Point(235, 88);
@@ -265,7 +431,9 @@ namespace BTL.GUI
             this.pnlContainer.Size = new System.Drawing.Size(1009, 632);
             this.pnlContainer.TabIndex = 2;
 
+            // 
             // FormMain
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1244, 720);
