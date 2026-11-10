@@ -1,6 +1,6 @@
 namespace BTL.DTO
 {
-    public class SachDTO
+    public class SachDTO : BaseEntity
     {
         public string MaSach { get; set; } = string.Empty;
         public string TenSach { get; set; } = string.Empty;

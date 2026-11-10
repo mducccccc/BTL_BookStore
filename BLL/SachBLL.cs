@@ -1,3 +1,4 @@
+using BTL.Interfaces;
 using System;
 using System.Data;
 using BTL.DAL;
@@ -5,7 +6,7 @@ using BTL.DTO;
 
 namespace BTL.BLL
 {
-    public class SachBLL
+    public class SachBLL : ISachService
     {
         private readonly SachDAL _dal = new();
 

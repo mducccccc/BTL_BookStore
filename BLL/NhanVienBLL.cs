@@ -1,3 +1,4 @@
+using BTL.Interfaces;
 using System;
 using System.Data;
 using BTL.DAL;
@@ -5,7 +6,7 @@ using BTL.DTO;
 
 namespace BTL.BLL
 {
-    public class NhanVienBLL
+    public class NhanVienBLL : INhanVienService
     {
         private readonly NhanVienDAL _dal = new();
 

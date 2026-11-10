@@ -1,6 +1,6 @@
 namespace BTL.DTO
 {
-    public class KhachHangDTO
+    public class KhachHangDTO : BaseEntity
     {
         public string MaKH { get; set; } = string.Empty;
         public string TenKH { get; set; } = string.Empty;
@@ -9,7 +9,7 @@ namespace BTL.DTO
         public string DiaChi { get; set; } = string.Empty;
     }
 
-    public class NhanVienDTO
+    public class NhanVienDTO : BaseEntity
     {
         public string MaNV { get; set; } = string.Empty;
         public string TenNV { get; set; } = string.Empty;

@@ -1,3 +1,4 @@
+using BTL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,7 +7,7 @@ using BTL.DTO;
 
 namespace BTL.BLL
 {
-    public class ThueTraBLL
+    public class ThueTraBLL : IThueTraService
     {
         private readonly ThueTraDAL _dal = new();
 

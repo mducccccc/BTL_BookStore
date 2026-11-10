@@ -1,10 +1,11 @@
+using BTL.Interfaces;
 using System;
 using System.Data;
 using BTL.DAL;
 
 namespace BTL.BLL
 {
-    public class BaoCaoBLL
+    public class BaoCaoBLL : IBaoCaoService
     {
         private readonly BaoCaoDAL _dal = new();
 
