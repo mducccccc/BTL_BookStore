@@ -19,7 +19,56 @@ namespace BTL.GUI
             UITheme.StyleDataGridView(dgvCaLam);
 
             SetupEvents();
+            ApplyRolePermissions();
             LoadAllDanhMuc();
+        }
+
+        private void ApplyRolePermissions()
+        {
+            bool isAdmin = SessionContext.IsAdmin;
+
+            // Nhân viên và Admin đều có toàn quyền thao tác với danh mục phụ trợ:
+            // 1. Vi phạm & Tiền phạt
+            btnThemVP.Enabled = true;
+            btnSuaVP.Enabled = true;
+            btnXoaVP.Enabled = true;
+            txtMaVP.ReadOnly = false;
+            txtTenVP.ReadOnly = false;
+            numTienPhat.Enabled = true;
+
+            // 2. Tác giả
+            btnThemTG.Enabled = true;
+            btnSuaTG.Enabled = true;
+            btnXoaTG.Enabled = true;
+            txtMaTG.ReadOnly = false;
+            txtTenTG.ReadOnly = false;
+            cboGioiTinhTG.Enabled = true;
+            dtpNgaySinhTG.Enabled = true;
+            txtDiaChiTG.ReadOnly = false;
+
+            // 3. Nhà xuất bản
+            btnThemNXB.Enabled = true;
+            btnSuaNXB.Enabled = true;
+            btnXoaNXB.Enabled = true;
+            txtMaNXB.ReadOnly = false;
+            txtTenNXB.ReadOnly = false;
+            txtPhoneNXB.ReadOnly = false;
+            txtDiaChiNXB.ReadOnly = false;
+
+            // 4. Riêng Ca làm việc: chỉ Admin mới được thay đổi cấu trúc ca trực hệ thống
+            btnThemCa.Enabled = isAdmin;
+            btnSuaCa.Enabled = isAdmin;
+            btnXoaCa.Enabled = isAdmin;
+            txtMaCa.ReadOnly = !isAdmin;
+            txtTenCa.ReadOnly = !isAdmin;
+
+            if (!isAdmin)
+            {
+                Color disabledColor = Color.FromArgb(203, 213, 225);
+                btnThemCa.BackColor = disabledColor;
+                btnSuaCa.BackColor = disabledColor;
+                btnXoaCa.BackColor = disabledColor;
+            }
         }
 
         private void SetupEvents()
@@ -67,14 +116,18 @@ namespace BTL.GUI
                 txtTenTG.Text = r.Cells["TenTG"].Value?.ToString() ?? string.Empty;
                 if (r.Cells["NgaySinh"].Value != DBNull.Value && r.Cells["NgaySinh"].Value != null)
                     dtpNgaySinhTG.Value = Convert.ToDateTime(r.Cells["NgaySinh"].Value);
-                string gt = r.Cells["GioiTinh"].Value?.ToString()?.Trim() ?? "M";
+                string gt = r.Cells["GioiTinh"].Value?.ToString() ?? "M";
                 cboGioiTinhTG.SelectedIndex = (gt == "F") ? 1 : 0;
                 txtDiaChiTG.Text = r.Cells["DiaChi"].Value?.ToString() ?? string.Empty;
             };
 
             btnThemTG.Click += (s, e) =>
             {
-                if (string.IsNullOrWhiteSpace(txtMaTG.Text) || string.IsNullOrWhiteSpace(txtTenTG.Text)) return;
+                if (string.IsNullOrWhiteSpace(txtMaTG.Text) || string.IsNullOrWhiteSpace(txtTenTG.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập đủ Mã và Tên tác giả!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 var tg = new TacGiaDTO
                 {
                     MaTG = txtMaTG.Text.Trim(),
@@ -83,7 +136,7 @@ namespace BTL.GUI
                     GioiTinh = cboGioiTinhTG.SelectedIndex == 1 ? "F" : "M",
                     DiaChi = txtDiaChiTG.Text.Trim()
                 };
-                if (_bll.InsertTacGia(tg)) { LoadTacGia(); txtMaTG.Clear(); txtTenTG.Clear(); txtDiaChiTG.Clear(); }
+                if (_bll.InsertTacGia(tg)) { LoadTacGia(); }
             };
 
             btnSuaTG.Click += (s, e) =>
@@ -119,6 +172,11 @@ namespace BTL.GUI
 
             btnThemNXB.Click += (s, e) =>
             {
+                if (string.IsNullOrWhiteSpace(txtMaNXB.Text) || string.IsNullOrWhiteSpace(txtTenNXB.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập đủ Mã và Tên NXB!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 var nxb = new NXBDTO { MaNXB = txtMaNXB.Text.Trim(), TenNXB = txtTenNXB.Text.Trim(), DiaChi = txtDiaChiNXB.Text.Trim(), DienThoai = txtPhoneNXB.Text.Trim() };
                 if (_bll.InsertNXB(nxb)) { LoadNXB(); }
             };
@@ -134,7 +192,7 @@ namespace BTL.GUI
                 if (_bll.DeleteNXB(txtMaNXB.Text.Trim())) { LoadNXB(); }
             };
 
-            // 4. Ca Làm
+            // 4. Ca Làm (Dành riêng cho Admin)
             dgvCaLam.CellClick += (s, e) =>
             {
                 if (e.RowIndex < 0 || e.RowIndex >= dgvCaLam.Rows.Count) return;
@@ -145,18 +203,33 @@ namespace BTL.GUI
 
             btnThemCa.Click += (s, e) =>
             {
+                if (!SessionContext.IsAdmin)
+                {
+                    MessageBox.Show("Chỉ tài khoản Quản trị viên (Admin) mới có quyền chỉnh sửa ca làm việc!", "Từ chối", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 var ca = new CaLamDTO { MaCa = txtMaCa.Text.Trim(), TenCa = txtTenCa.Text.Trim() };
                 if (_bll.InsertCaLam(ca)) { LoadCaLam(); }
             };
 
             btnSuaCa.Click += (s, e) =>
             {
+                if (!SessionContext.IsAdmin)
+                {
+                    MessageBox.Show("Chỉ tài khoản Quản trị viên (Admin) mới có quyền chỉnh sửa ca làm việc!", "Từ chối", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 var ca = new CaLamDTO { MaCa = txtMaCa.Text.Trim(), TenCa = txtTenCa.Text.Trim() };
                 if (_bll.UpdateCaLam(ca)) { LoadCaLam(); }
             };
 
             btnXoaCa.Click += (s, e) =>
             {
+                if (!SessionContext.IsAdmin)
+                {
+                    MessageBox.Show("Chỉ tài khoản Quản trị viên (Admin) mới có quyền chỉnh sửa ca làm việc!", "Từ chối", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 if (_bll.DeleteCaLam(txtMaCa.Text.Trim())) { LoadCaLam(); }
             };
         }

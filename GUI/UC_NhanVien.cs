@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using BTL.BLL;
 using BTL.DTO;
@@ -22,7 +23,42 @@ namespace BTL.GUI
             txtTimKiem.TextChanged += (s, e) => FilterData();
             dgvNhanVien.CellClick += DgvNhanVien_CellClick;
 
+            cboChucVu.SelectedIndex = 1; // Default: NhanVien
+
+            ApplyRolePermissions();
             LoadData();
+        }
+
+        private void ApplyRolePermissions()
+        {
+            bool isAdmin = SessionContext.IsAdmin;
+
+            // Nếu không phải admin: chỉ được xem, không được thêm/sửa/xóa
+            btnThem.Enabled = isAdmin;
+            btnSua.Enabled = isAdmin;
+            btnXoa.Enabled = isAdmin;
+            btnAutoMa.Enabled = isAdmin;
+            cboChucVu.Enabled = isAdmin;
+
+            txtMaNV.ReadOnly = !isAdmin;
+            txtTenNV.ReadOnly = !isAdmin;
+            numNamSinh.Enabled = isAdmin;
+            cboGioiTinh.Enabled = isAdmin;
+            txtDienThoai.ReadOnly = !isAdmin;
+            numLuongThang.Enabled = isAdmin;
+            txtDiaChi.ReadOnly = !isAdmin;
+
+            if (!isAdmin)
+            {
+                lblRoleNotice.Visible = true;
+                btnThem.BackColor = Color.FromArgb(203, 213, 225);
+                btnSua.BackColor = Color.FromArgb(203, 213, 225);
+                btnXoa.BackColor = Color.FromArgb(203, 213, 225);
+            }
+            else
+            {
+                lblRoleNotice.Visible = false;
+            }
         }
 
         private void LoadData()
@@ -42,6 +78,10 @@ namespace BTL.GUI
                 {
                     dgvNhanVien.Columns["LuongThang"].HeaderText = "Lương Tháng (VNĐ)";
                     dgvNhanVien.Columns["LuongThang"].DefaultCellStyle.Format = "N0";
+                }
+                if (dgvNhanVien.Columns.Contains("ChucVu"))
+                {
+                    dgvNhanVien.Columns["ChucVu"].HeaderText = "Chức Vụ";
                 }
 
                 lblTotal.Text = $"Tổng: {dt.Rows.Count} nhân viên";
@@ -97,10 +137,22 @@ namespace BTL.GUI
             {
                 numLuongThang.Value = Convert.ToDecimal(row.Cells["LuongThang"].Value);
             }
+
+            if (dgvNhanVien.Columns.Contains("ChucVu") && row.Cells["ChucVu"].Value != null)
+            {
+                string cv = row.Cells["ChucVu"].Value.ToString() ?? "";
+                cboChucVu.SelectedIndex = (cv.Equals("Admin", StringComparison.OrdinalIgnoreCase) || cv.Equals("Quản lý", StringComparison.OrdinalIgnoreCase)) ? 0 : 1;
+            }
         }
 
         private void BtnThem_Click(object? sender, EventArgs e)
         {
+            if (!SessionContext.IsAdmin)
+            {
+                MessageBox.Show("Chỉ tài khoản Quản trị viên (Admin) mới có quyền thêm nhân viên!", "Từ chối truy cập", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var nv = new NhanVienDTO
             {
                 MaNV = txtMaNV.Text.Trim(),
@@ -109,7 +161,8 @@ namespace BTL.GUI
                 GioiTinh = cboGioiTinh.SelectedIndex == 1 ? "F" : "M",
                 DiaChi = txtDiaChi.Text.Trim(),
                 DienThoai = txtDienThoai.Text.Trim(),
-                LuongThang = numLuongThang.Value
+                LuongThang = numLuongThang.Value,
+                ChucVu = cboChucVu.SelectedIndex == 0 ? "Admin" : "NhanVien"
             };
 
             if (_bll.Insert(nv, out string error))
@@ -125,6 +178,12 @@ namespace BTL.GUI
 
         private void BtnSua_Click(object? sender, EventArgs e)
         {
+            if (!SessionContext.IsAdmin)
+            {
+                MessageBox.Show("Chỉ tài khoản Quản trị viên (Admin) mới có quyền cập nhật thông tin nhân viên!", "Từ chối truy cập", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(txtMaNV.Text))
             {
                 MessageBox.Show("Vui lòng chọn nhân viên cần cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -139,7 +198,8 @@ namespace BTL.GUI
                 GioiTinh = cboGioiTinh.SelectedIndex == 1 ? "F" : "M",
                 DiaChi = txtDiaChi.Text.Trim(),
                 DienThoai = txtDienThoai.Text.Trim(),
-                LuongThang = numLuongThang.Value
+                LuongThang = numLuongThang.Value,
+                ChucVu = cboChucVu.SelectedIndex == 0 ? "Admin" : "NhanVien"
             };
 
             if (_bll.Update(nv, out string error))
@@ -155,9 +215,21 @@ namespace BTL.GUI
 
         private void BtnXoa_Click(object? sender, EventArgs e)
         {
+            if (!SessionContext.IsAdmin)
+            {
+                MessageBox.Show("Chỉ tài khoản Quản trị viên (Admin) mới có quyền xóa nhân viên!", "Từ chối truy cập", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(txtMaNV.Text))
             {
                 MessageBox.Show("Vui lòng chọn nhân viên cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (txtMaNV.Text.Trim().Equals(SessionContext.CurrentNhanVien?.MaNV, StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Không thể tự xóa tài khoản đang đăng nhập!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -183,12 +255,20 @@ namespace BTL.GUI
 
         private void ResetInputs()
         {
-            txtMaNV.Text = _bll.GenerateNewMaNV();
+            if (SessionContext.IsAdmin)
+            {
+                txtMaNV.Text = _bll.GenerateNewMaNV();
+            }
+            else
+            {
+                txtMaNV.Clear();
+            }
             txtTenNV.Clear();
             numNamSinh.Value = 1998;
             cboGioiTinh.SelectedIndex = 0;
             txtDienThoai.Clear();
             numLuongThang.Value = 7000000;
+            cboChucVu.SelectedIndex = 1;
             txtDiaChi.Clear();
             txtTimKiem.Clear();
             txtTenNV.Focus();

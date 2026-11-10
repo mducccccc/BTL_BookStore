@@ -12,6 +12,7 @@ namespace BTL.GUI
         public FormLogin()
         {
             InitializeComponent();
+            lblHint.Text = "Gợi ý đăng nhập:\n• Quản trị viên: Tên đăng nhập = admin | Mật khẩu = admin\n• Nhân viên: Mã NV (VD: NV25-01, NV25-02) | MK = Số điện thoại";
             cboCaLam.SelectedIndex = 0;
             btnDangNhap.Click += BtnDangNhap_Click;
             btnThoat.Click += (s, e) => { this.DialogResult = DialogResult.Cancel; this.Close(); };
@@ -25,7 +26,7 @@ namespace BTL.GUI
 
             if (string.IsNullOrWhiteSpace(maNV))
             {
-                lblError.Text = "Vui lòng nhập Mã nhân viên!";
+                lblError.Text = "Vui lòng nhập Tên đăng nhập / Mã NV!";
                 txtMaNV.Focus();
                 return;
             }
@@ -49,7 +50,7 @@ namespace BTL.GUI
                 }
                 else
                 {
-                    lblError.Text = "Mã nhân viên hoặc Mật khẩu không chính xác!";
+                    lblError.Text = "Tài khoản hoặc Mật khẩu không chính xác!";
                 }
             }
             catch (Exception ex)

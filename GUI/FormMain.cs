@@ -55,16 +55,18 @@ namespace BTL.GUI
         {
             if (SessionContext.CurrentNhanVien == null)
             {
-                // Khởi tạo nhân viên mặc định phục vụ chạy thử nghiệm
+                // Mặc định tài khoản admin nếu chưa có phiên
                 SessionContext.CurrentNhanVien = new NhanVienDTO
                 {
-                    MaNV = "NV25-01",
-                    TenNV = "Nguyễn Văn Quản Lý",
-                    DienThoai = "0988123456"
+                    MaNV = "ADMIN",
+                    TenNV = "Quản Trị Viên (Admin)",
+                    DienThoai = "admin",
+                    ChucVu = "Admin"
                 };
             }
 
-            lblCurrentUser.Text = $"NV: {SessionContext.CurrentNhanVien.TenNV}";
+            string roleText = SessionContext.IsAdmin ? "Quản trị viên" : "Nhân viên";
+            lblCurrentUser.Text = $"[{roleText}] {SessionContext.CurrentNhanVien.TenNV}";
             lblCaLam.Text = $"Ca trực: {SessionContext.CurrentCaLam}";
         }
 
@@ -124,6 +126,7 @@ namespace BTL.GUI
                 {
                     InitSessionData();
                     this.Show();
+                    btnNavDashboard.PerformClick();
                 }
                 else
                 {

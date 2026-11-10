@@ -18,5 +18,6 @@ namespace BTL.DTO
         public string DiaChi { get; set; } = string.Empty;
         public string DienThoai { get; set; } = string.Empty;
         public decimal? LuongThang { get; set; }
+        public string ChucVu { get; set; } = "NhanVien"; // "Admin" hoặc "NhanVien"
     }
 }
